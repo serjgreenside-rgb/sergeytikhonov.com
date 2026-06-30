@@ -134,7 +134,7 @@ body {
     background-color: transparent;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(16, 240px);
+    grid-template-rows: repeat(19, 240px);
 }
 
 /* Generic Grid Cell */
@@ -963,6 +963,32 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
 
 
 
+/* Footer Styles */
+.footer-write-btn {
+    grid-column: 2;
+    grid-row: 18;
+}
+
+.footer-cv-btn {
+    grid-column: 4;
+    grid-row: 18;
+}
+
+.footer-date-cell {
+    grid-column: 3;
+    grid-row: 19;
+    background-color: var(--primary-blue);
+    color: #ffffff;
+    font-family: var(--font-main);
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--primary-blue);
+    z-index: 5;
+}
+
 /* RESPONSIVE DESIGN */
 @media (max-width: 991px) {
     .header-title .sub-title {
@@ -1011,6 +1037,9 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
     .cell-12-1, .cell-12-2, .cell-12-3, .cell-12-4, .cell-12-5,
     .cell-15-1, .cell-15-2, .cell-15-3, .cell-15-4, .cell-15-5,
     .cell-16-2, .cell-16-3, .cell-16-4, .cell-16-5,
+    .cell-17-1, .cell-17-2, .cell-17-3, .cell-17-4, .cell-17-5,
+    .cell-18-1, .cell-18-3, .cell-18-5,
+    .cell-19-1, .cell-19-2, .cell-19-4, .cell-19-5,
     .carousel-3d-container {
         display: none;
     }
@@ -1310,5 +1339,42 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
     
     .ws-card-3 {
         order: 16;
+    }
+
+    /* === FOOTER MOBILE OVERRIDES === */
+    .footer-btn {
+        width: 100% !important;
+        height: 60px !important;
+        padding: 0 !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-top: none !important;
+        border-bottom: 1px solid var(--primary-blue) !important;
+        display: flex !important;
+    }
+    
+    .footer-btn:hover {
+        border-left: none !important;
+        border-right: none !important;
+        border-top: none !important;
+        border-bottom: 1px solid var(--grid-line-color) !important;
+    }
+    
+    .footer-write-btn {
+        order: 17;
+    }
+    
+    .footer-cv-btn {
+        order: 18;
+    }
+    
+    .footer-date-cell {
+        order: 19;
+        width: 100% !important;
+        height: 60px !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-top: none !important;
+        border-bottom: 1px solid var(--grid-line-color) !important;
     }
 }

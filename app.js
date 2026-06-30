@@ -59,15 +59,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // === CV MODAL CONTROLS ===
-    const cvLink = document.getElementById('link-cv');
+    const cvLinks = document.querySelectorAll('#link-cv, #footer-link-cv');
     const modal = document.getElementById('cv-modal');
     const closeModal = document.getElementById('close-modal');
 
-    if (cvLink && modal) {
-        cvLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            modal.classList.add('open');
-            document.body.style.overflow = 'hidden';
+    if (cvLinks.length > 0 && modal) {
+        cvLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
         });
     }
 
