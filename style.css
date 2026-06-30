@@ -1018,16 +1018,28 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
     }
 
     .grid-container {
-        display: flex;
-        flex-direction: column;
-        border-left: none;
-        border-top: none;
-        box-shadow: none;
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        grid-template-rows: 
+            auto /* Row 1: Title */
+            33.333vw /* Row 2: Spacer */
+            33.333vw /* Row 3: CV/Photo top */
+            33.333vw /* Row 4: Photo bottom/Discuss */
+            33.333vw /* Row 5: Spacer */
+            auto /* Row 6: Bio text */
+            33.333vw /* Row 7: Spacer */
+            auto /* Row 8: Quote */
+            33.333vw /* Row 9: Spacer */
+            auto; /* Rest of page */
+        grid-auto-rows: auto !important;
+        border-top: 1px solid var(--grid-line-color) !important;
+        border-right: 1px solid var(--grid-line-color) !important;
+        box-shadow: none !important;
     }
     
     /* Hide empty/filler cells on mobile */
-    .cell-1-4, .cell-1-5, .cell-2-1, .cell-2-2, .cell-2-3, .cell-3-2, .cell-3-4,
-    .cell-4-1, .cell-4-2, .cell-4-3, .cell-4-4, .cell-4-5,
+    .cell-1-4, .cell-1-5,
+    .cell-4-3, .cell-4-4, .cell-4-5,
     .cell-5-1, .cell-5-2, .cell-5-4, .cell-5-5,
     .cell-7-5,
     .cell-8-1, .cell-8-4,
@@ -1046,11 +1058,22 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
     
     .grid-cell {
         width: 100% !important;
-        height: auto !important;
-        border-left: none;
-        border-right: none;
-        border-bottom: none;
-        padding: 30px 20px;
+        height: 100% !important;
+        border-left: 1px solid var(--grid-line-color) !important;
+        border-bottom: 1px solid var(--grid-line-color) !important;
+        border-right: none !important;
+        border-top: none !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+        grid-column: 1 / span 3;
+    }
+    
+    .header-title, .bio-cell, .quote-cell, .section-label, .fw-sub-blue-1 {
+        padding: 30px 20px !important;
+    }
+    
+    .grid-cell:has(.stat-number) {
+        padding: 30px 20px !important;
     }
     
     .header-title {
@@ -1074,12 +1097,11 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
     }
     
     .header-photo {
-        order: 2;
+        grid-column: 2 !important;
+        grid-row: 3 / span 2 !important;
         width: 100% !important;
-        height: auto !important;
-        aspect-ratio: 1.05 / 1;
-        padding: 0;
-        border-bottom: 1px solid var(--grid-line-color);
+        height: 100% !important;
+        padding: 0 !important;
     }
     
     .photo-wrapper {
@@ -1087,36 +1109,56 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
         height: 100%;
     }
 
-    .photo-btn {
-        width: 100% !important;
-        height: 60px !important;
-        padding: 0 !important;
-        border-left: none !important;
-        border-right: none !important;
-        border-top: none !important;
-        border-bottom: 1px solid var(--primary-blue) !important;
-        display: flex !important;
-    }
-    
-    .photo-btn:hover {
-        border-left: none !important;
-        border-right: none !important;
-        border-top: none !important;
-        border-bottom: 1px solid var(--grid-line-color) !important;
-    }
-    
     .cv-btn {
-        order: 3;
+        grid-column: 3 !important;
+        grid-row: 3 !important;
     }
     
     .write-btn {
-        order: 4;
+        grid-column: 1 !important;
+        grid-row: 4 !important;
+    }
+
+    /* Grid positions for empty spacer cells in Block 1 on mobile */
+    .cell-2-1 {
+        grid-column: 1 / span 3 !important;
+        grid-row: 2 !important;
+    }
+
+    .cell-2-2 {
+        grid-column: 1 !important;
+        grid-row: 3 !important;
+    }
+
+    .cell-2-3 {
+        grid-column: 3 !important;
+        grid-row: 4 !important;
+    }
+
+    .cell-3-2 {
+        grid-column: 1 / span 3 !important;
+        grid-row: 5 !important;
+    }
+
+    .cell-3-4 {
+        grid-column: 1 / span 3 !important;
+        grid-row: 7 !important;
+    }
+
+    .cell-4-1 {
+        grid-column: 1 !important;
+        grid-row: 8 !important;
+    }
+
+    .cell-4-2 {
+        grid-column: 1 / span 3 !important;
+        grid-row: 9 !important;
     }
     
     .bio-cell {
-        order: 5;
-        padding: 30px 20px;
-        border-bottom: 1px solid var(--grid-line-color);
+        grid-column: 1 / span 3 !important;
+        grid-row: 6 !important;
+        padding: 30px 20px !important;
     }
 
     .bio-cell p {
@@ -1126,9 +1168,9 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
     }
     
     .quote-cell {
-        order: 4;
-        padding: 30px 20px;
-        border-bottom: 1px solid var(--grid-line-color);
+        grid-column: 2 / span 2 !important;
+        grid-row: 8 !important;
+        padding: 30px 20px !important;
     }
 
     .quote-cell blockquote {
