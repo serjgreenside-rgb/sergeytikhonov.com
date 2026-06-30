@@ -934,10 +934,12 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
 
 .ws-card-2 {
     grid-column: 4;
+    border-left: none;
 }
 
 .ws-card-3 {
     grid-column: 5;
+    border-left: none;
 }
 
 .ws-card a {
