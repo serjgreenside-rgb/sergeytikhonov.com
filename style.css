@@ -247,14 +247,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 10;
     cursor: none !important;
+    border-left: 1px solid var(--grid-line-color);
+    border-bottom: 1px solid var(--grid-line-color);
+    border-top: 1px solid transparent;
+    border-right: 1px solid transparent;
 }
 
 .photo-btn:hover {
     background-color: #ffffff;
     color: var(--primary-blue);
+    border-top-color: var(--grid-line-color);
+    border-right-color: var(--grid-line-color);
 }
 
 .cv-btn {
@@ -1057,8 +1065,15 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
         height: 60px !important;
         padding: 0 !important;
         border-left: none !important;
+        border-right: none !important;
+        border-top: none !important;
         border-bottom: 1px solid var(--grid-line-color) !important;
         display: flex !important;
+    }
+    
+    .photo-btn:hover {
+        border-top: none !important;
+        border-right: none !important;
     }
     
     .cv-btn {
