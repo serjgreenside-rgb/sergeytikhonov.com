@@ -112,7 +112,7 @@ body {
 .bg-v-line {
     position: absolute;
     top: -10000px; /* extends all the way up */
-    bottom: -10000px; /* extends all the way down */
+    bottom: 0; /* ends exactly at the bottom of the grid */
     width: 1px;
     background-color: var(--grid-line-color);
     z-index: 1; /* behind grid-cells which have z-index: 3 */
