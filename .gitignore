@@ -1,0 +1,6 @@
+# Ignore temporary scripts and test executables
+*.ps1
+*.cs
+*.exe
+*.txt
+extracted_*
