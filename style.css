@@ -1019,19 +1019,21 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
 
     .grid-container {
         display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important;
+        grid-template-columns: repeat(3, 125px) !important;
         grid-template-rows: 
             auto /* Row 1: Title */
-            33.333vw /* Row 2: Spacer */
-            33.333vw /* Row 3: CV/Photo top */
-            33.333vw /* Row 4: Photo bottom/Discuss */
-            33.333vw /* Row 5: Spacer */
+            100px /* Row 2: Spacer */
+            100px /* Row 3: CV/Photo top */
+            100px /* Row 4: Photo bottom/Discuss */
+            100px /* Row 5: Spacer */
             auto /* Row 6: Bio text */
-            33.333vw /* Row 7: Spacer */
+            100px /* Row 7: Spacer */
             auto /* Row 8: Quote */
-            33.333vw /* Row 9: Spacer */
+            100px /* Row 9: Spacer */
             auto; /* Rest of page */
         grid-auto-rows: auto !important;
+        width: 375px !important;
+        margin: 0 auto !important;
         border-top: 1px solid var(--grid-line-color) !important;
         border-right: 1px solid var(--grid-line-color) !important;
         box-shadow: none !important;
@@ -1090,7 +1092,7 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
     }
     
     .header-title .sub-title {
-        font-size: 8.5vw !important;
+        font-size: 32px !important;
         font-weight: 900;
         letter-spacing: -0.03em;
         line-height: 1;
