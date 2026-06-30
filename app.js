@@ -5,11 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
     let mouseY = 0;
     let cursorX = 0;
     let cursorY = 0;
+    let hasMoved = false;
 
     // Track mouse coordinates
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
+        if (!hasMoved) {
+            cursorX = mouseX;
+            cursorY = mouseY;
+            hasMoved = true;
+        }
     });
 
     // Smooth cursor interpolation using requestAnimationFrame
@@ -22,8 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cursorY += dy * 0.15;
         
         if (cursor) {
-            cursor.style.left = `${cursorX}px`;
-            cursor.style.top = `${cursorY}px`;
+            cursor.style.transform = `translate3d(${cursorX - 3}px, ${cursorY - 3}px, 0)`;
         }
         
         requestAnimationFrame(animateCursor);
