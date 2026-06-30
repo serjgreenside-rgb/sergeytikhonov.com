@@ -1090,10 +1090,23 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
     }
     
     .header-title .sub-title {
-        font-size: 38px;
+        font-size: 8.5vw !important;
         font-weight: 900;
         letter-spacing: -0.03em;
-        line-height: 0.95;
+        line-height: 1;
+        white-space: nowrap;
+    }
+
+    .photo-btn {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+        font-size: 18px !important;
+        line-height: 1.2 !important;
+        padding: 10px !important;
+        box-sizing: border-box !important;
     }
     
     .header-photo {
