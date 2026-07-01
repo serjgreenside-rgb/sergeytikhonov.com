@@ -1024,12 +1024,12 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
 
     .grid-container {
         display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important;
+        grid-template-columns: repeat(2, 1fr) !important;
         grid-template-rows: 
             194px /* Row 1: Title (Figma height) */
             0px /* Row 2: Spacer (Collapsed) */
-            100px /* Row 3: CV/Photo top */
-            100px /* Row 4: Photo bottom/Discuss */
+            126px /* Row 3: CV/Photo top */
+            126px /* Row 4: Photo bottom/Discuss */
             0px /* Row 5: Spacer (Collapsed) */
             auto /* Row 6: Bio text */
             0px /* Row 7: Spacer (Collapsed) */
@@ -1037,8 +1037,8 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
             0px /* Row 9: Spacer (Collapsed) */
             auto; /* Rest of page */
         grid-auto-rows: auto !important;
-        gap: 12px !important;
-        padding: 12px !important;
+        gap: 5px !important;
+        padding: 0 !important;
         width: 100% !important;
         max-width: 402px !important;
         margin: 0 auto !important;
@@ -1073,7 +1073,7 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
         border: none !important;
         padding: 0 !important;
         box-sizing: border-box !important;
-        grid-column: 1 / span 3;
+        grid-column: 1 / span 2;
     }
     
     .header-title, .bio-cell, .quote-cell, .section-label, .fw-sub-blue-1 {
@@ -1132,10 +1132,10 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
     }
     
     .header-photo {
-        grid-column: 1 / span 2 !important;
+        grid-column: 1 !important;
         grid-row: 3 / span 2 !important;
         width: 100% !important;
-        height: 100% !important;
+        height: 257px !important;
         padding: 0 !important;
     }
     
@@ -1145,38 +1145,40 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
     }
 
     .cv-btn {
-        grid-column: 3 !important;
+        grid-column: 2 !important;
         grid-row: 3 !important;
+        height: 126px !important;
     }
     
     .write-btn {
-        grid-column: 3 !important;
+        grid-column: 2 !important;
         grid-row: 4 !important;
+        height: 126px !important;
     }
 
     /* Grid positions for empty spacer cells in Block 1 on mobile */
     .cell-2-1 {
-        grid-column: 1 / span 3 !important;
+        grid-column: 1 / span 2 !important;
         grid-row: 2 !important;
     }
 
     .cell-3-2 {
-        grid-column: 1 / span 3 !important;
+        grid-column: 1 / span 2 !important;
         grid-row: 5 !important;
     }
 
     .cell-3-4 {
-        grid-column: 1 / span 3 !important;
+        grid-column: 1 / span 2 !important;
         grid-row: 7 !important;
     }
 
     .cell-4-2 {
-        grid-column: 1 / span 3 !important;
+        grid-column: 1 / span 2 !important;
         grid-row: 9 !important;
     }
     
     .bio-cell {
-        grid-column: 1 / span 3 !important;
+        grid-column: 1 / span 2 !important;
         grid-row: 6 !important;
         padding: 30px 20px !important;
     }
@@ -1188,7 +1190,7 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
     }
     
     .quote-cell {
-        grid-column: 1 / span 3 !important;
+        grid-column: 1 / span 2 !important;
         grid-row: 8 !important;
         padding: 30px 0 !important;
         display: flex !important;
