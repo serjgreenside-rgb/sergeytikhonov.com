@@ -1026,7 +1026,7 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
         display: grid !important;
         grid-template-columns: repeat(3, 1fr) !important;
         grid-template-rows: 
-            auto /* Row 1: Title */
+            194px /* Row 1: Title (Figma height) */
             0px /* Row 2: Spacer (Collapsed) */
             100px /* Row 3: CV/Photo top */
             100px /* Row 4: Photo bottom/Discuss */
@@ -1040,7 +1040,7 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
         gap: 12px !important;
         padding: 12px !important;
         width: 100% !important;
-        max-width: 375px !important;
+        max-width: 402px !important;
         margin: 0 auto !important;
         background-color: #000000 !important;
         border: none !important;
@@ -1085,24 +1085,38 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
     }
     
     .header-title {
-        order: 1;
-        padding-top: 40px;
-        padding-bottom: 16px;
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        height: 194px !important;
+        padding: 24px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
+        box-sizing: border-box !important;
     }
     
     .header-title h1 {
-        font-size: 16px;
-        font-weight: 500;
-        margin-bottom: 4px;
-        letter-spacing: -0.01em;
+        font-family: 'Montserrat', sans-serif !important;
+        font-size: 17.308px !important;
+        font-weight: 500 !important;
+        color: #000000 !important;
+        margin-bottom: 8px !important;
+        letter-spacing: -0.01em !important;
+        text-transform: none !important;
+        text-align: left !important;
     }
     
     .header-title .sub-title {
-        font-size: 28px !important;
-        font-weight: 900;
-        letter-spacing: -0.03em;
-        line-height: 1;
-        white-space: nowrap;
+        font-family: 'Montserrat', sans-serif !important;
+        font-size: 32.619px !important;
+        font-weight: 700 !important;
+        color: #000000 !important;
+        text-transform: uppercase !important;
+        letter-spacing: -0.02em !important;
+        line-height: 1.1 !important;
+        white-space: normal !important;
+        text-align: left !important;
     }
 
     .photo-btn {
@@ -1461,7 +1475,7 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
 
     /* Add rounded corners to card blocks */
     .header-title, .header-photo, .photo-btn, .bio-cell, .fw-blue-card, .fw-sub-blue-1, .ai-accordion-container, .ws-card, .footer-date-cell, .footer-btn, .stat-block {
-        border-radius: 36px !important;
+        border-radius: 30px !important;
         overflow: hidden !important;
     }
 }
