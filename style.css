@@ -306,10 +306,15 @@ body {
     font-size: 32px;
     line-height: 1.4;
     color: #6B6B6B;
-    font-style: italic;
-    font-weight: 700;
     margin: 0;
     letter-spacing: -0.01em;
+}
+
+.quote-line {
+    display: block;
+    font-style: italic;
+    font-weight: 700;
+    color: inherit;
 }
 
 
@@ -1001,7 +1006,7 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
 
 @media (max-width: 768px) {
     body {
-        background-color: var(--bg-color);
+        background-color: #000000 !important;
     }
 
     .artboard-container {
@@ -1019,29 +1024,32 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
 
     .grid-container {
         display: grid !important;
-        grid-template-columns: repeat(3, 125px) !important;
+        grid-template-columns: repeat(3, 1fr) !important;
         grid-template-rows: 
             auto /* Row 1: Title */
-            100px /* Row 2: Spacer */
+            0px /* Row 2: Spacer (Collapsed) */
             100px /* Row 3: CV/Photo top */
             100px /* Row 4: Photo bottom/Discuss */
-            100px /* Row 5: Spacer */
+            0px /* Row 5: Spacer (Collapsed) */
             auto /* Row 6: Bio text */
-            100px /* Row 7: Spacer */
+            0px /* Row 7: Spacer (Collapsed) */
             auto /* Row 8: Quote */
-            100px /* Row 9: Spacer */
+            0px /* Row 9: Spacer (Collapsed) */
             auto; /* Rest of page */
         grid-auto-rows: auto !important;
-        width: 375px !important;
+        gap: 12px !important;
+        padding: 12px !important;
+        width: 100% !important;
+        max-width: 375px !important;
         margin: 0 auto !important;
-        border-top: 1px solid var(--grid-line-color) !important;
-        border-right: 1px solid var(--grid-line-color) !important;
+        background-color: #000000 !important;
+        border: none !important;
         box-shadow: none !important;
     }
     
     /* Hide empty/filler cells on mobile */
     .cell-1-4, .cell-1-5,
-    .cell-4-3, .cell-4-4, .cell-4-5,
+    .cell-4-1, .cell-4-3, .cell-4-4, .cell-4-5,
     .cell-5-1, .cell-5-2, .cell-5-4, .cell-5-5,
     .cell-7-5,
     .cell-8-1, .cell-8-4,
@@ -1061,10 +1069,7 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
     .grid-cell {
         width: 100% !important;
         height: 100% !important;
-        border-left: 1px solid var(--grid-line-color) !important;
-        border-bottom: 1px solid var(--grid-line-color) !important;
-        border-right: none !important;
-        border-top: none !important;
+        border: none !important;
         padding: 0 !important;
         box-sizing: border-box !important;
         grid-column: 1 / span 3;
@@ -1183,18 +1188,38 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
     }
     
     .quote-cell {
-        grid-column: 2 / span 2 !important;
+        grid-column: 1 / span 3 !important;
         grid-row: 8 !important;
-        padding: 30px 20px !important;
+        padding: 30px 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+        background-color: transparent !important;
+        border: none !important;
     }
 
     .quote-cell blockquote {
-        font-size: 26px;
-        line-height: 1.35;
-        color: #000000;
-        font-style: italic;
-        font-weight: 900;
-        letter-spacing: -0.02em;
+        font-size: 24px !important;
+        line-height: 1.4 !important;
+        color: #ffffff !important;
+        font-style: normal !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.02em !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    .quote-line {
+        display: block !important;
+        color: rgba(255, 255, 255, 0.25) !important;
+        transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        margin-bottom: 8px !important;
+        font-style: italic !important;
+    }
+
+    .quote-line.highlighted {
+        color: #ffffff !important;
     }
 
     .grid-cross {
@@ -1433,5 +1458,24 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
         border-right: none !important;
         border-top: none !important;
         border-bottom: 1px solid var(--grid-line-color) !important;
+    }
+
+    /* === PREMIUM ROUNDED CARD LAYOUT OVERRIDES === */
+    .section-label h2 {
+        color: #ffffff !important;
+        font-size: 32px !important;
+        font-weight: 900 !important;
+        line-height: 1.1 !important;
+    }
+
+    /* Clean up all mobile borders */
+    .grid-cell, .fw-blue-card, .fw-sub-blue-1, .ai-accordion-container, .ws-card, .footer-date-cell, .footer-btn, .section-label, .stat-block {
+        border: none !important;
+    }
+
+    /* Add rounded corners to card blocks */
+    .header-title, .header-photo, .photo-btn, .bio-cell, .fw-blue-card, .fw-sub-blue-1, .ai-accordion-container, .ws-card, .footer-date-cell, .footer-btn, .stat-block {
+        border-radius: 36px !important;
+        overflow: hidden !important;
     }
 }

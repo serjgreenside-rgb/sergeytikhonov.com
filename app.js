@@ -229,6 +229,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize 3D product carousel
     init3DCarousel();
+
+    // === SCROLL REVEAL ANIMATION FOR MOBILE QUOTE ===
+    const quoteLines = document.querySelectorAll('.quote-line');
+    if (quoteLines.length > 0) {
+        const handleQuoteScroll = () => {
+            const triggerPoint = window.innerHeight * 0.8;
+            quoteLines.forEach(line => {
+                const rect = line.getBoundingClientRect();
+                if (rect.top < triggerPoint) {
+                    line.classList.add('highlighted');
+                } else {
+                    line.classList.remove('highlighted');
+                }
+            });
+        };
+        window.addEventListener('scroll', handleQuoteScroll);
+        window.addEventListener('resize', handleQuoteScroll);
+        // Run once initially to capture initial position
+        handleQuoteScroll();
+    }
 });
 
 // 3D Revolving Door Carousel Logic
