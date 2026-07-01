@@ -1109,13 +1109,13 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
     
     .header-title .sub-title {
         font-family: 'Montserrat', sans-serif !important;
-        font-size: 42px !important;
+        font-size: 34px !important;
         font-weight: 900 !important;
         color: #000000 !important;
         text-transform: uppercase !important;
         letter-spacing: -0.04em !important;
         line-height: 1.1 !important;
-        white-space: normal !important;
+        white-space: nowrap !important;
         text-align: left !important;
     }
 
