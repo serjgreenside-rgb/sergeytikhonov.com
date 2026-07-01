@@ -1031,7 +1031,7 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
             126px /* Row 3: CV/Photo top */
             126px /* Row 4: Photo bottom/Discuss */
             0px /* Row 5: Spacer (Collapsed) */
-            auto /* Row 6: Bio text */
+            105px /* Row 6: Bio text (Figma height) */
             0px /* Row 7: Spacer (Collapsed) */
             auto /* Row 8: Quote */
             0px /* Row 9: Spacer (Collapsed) */
@@ -1180,13 +1180,25 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
     .bio-cell {
         grid-column: 1 / span 2 !important;
         grid-row: 6 !important;
-        padding: 30px 20px !important;
+        height: 105px !important;
+        padding: 15px 31px !important;
+        background-color: #ffffff !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
     }
 
     .bio-cell p {
-        font-size: 15px;
-        line-height: 1.6;
-        color: #6B6B6B;
+        font-family: 'Montserrat', sans-serif !important;
+        font-size: 10px !important;
+        font-weight: 400 !important;
+        color: #6B6B6B !important;
+        line-height: 1.4 !important;
+        margin: 0 !important;
+        text-align: left !important;
+        width: 100% !important;
+        max-width: 340px !important;
     }
     
     .quote-cell {
