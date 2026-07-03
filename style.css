@@ -1027,14 +1027,10 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
         grid-template-columns: repeat(2, 1fr) !important;
         grid-template-rows: 
             194px /* Row 1: Title (Figma height) */
-            0px /* Row 2: Spacer (Collapsed) */
-            126px /* Row 3: CV/Photo top */
-            126px /* Row 4: Photo bottom/Discuss */
-            0px /* Row 5: Spacer (Collapsed) */
-            105px /* Row 6: Bio text (Figma height) */
-            0px /* Row 7: Spacer (Collapsed) */
-            auto /* Row 8: Quote */
-            0px /* Row 9: Spacer (Collapsed) */
+            126px /* Row 2: CV/Photo top */
+            126px /* Row 3: Photo bottom/Discuss */
+            105px /* Row 4: Bio text (Figma height) */
+            auto /* Row 5: Quote */
             auto; /* Rest of page */
         grid-auto-rows: auto !important;
         gap: 5px !important;
@@ -1049,8 +1045,9 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
     
     /* Hide empty/filler cells on mobile */
     .cell-1-4, .cell-1-5,
-    .cell-2-2, .cell-2-3,
-    .cell-4-1, .cell-4-3, .cell-4-4, .cell-4-5,
+    .cell-2-1, .cell-2-2, .cell-2-3,
+    .cell-3-2, .cell-3-4,
+    .cell-4-1, .cell-4-2, .cell-4-3, .cell-4-4, .cell-4-5,
     .cell-5-1, .cell-5-2, .cell-5-4, .cell-5-5,
     .cell-7-5,
     .cell-8-1, .cell-8-4,
@@ -1133,7 +1130,7 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
     
     .header-photo {
         grid-column: 1 !important;
-        grid-row: 3 / span 2 !important;
+        grid-row: 2 / span 2 !important;
         width: 100% !important;
         height: 257px !important;
         padding: 0 !important;
@@ -1146,40 +1143,19 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
 
     .cv-btn {
         grid-column: 2 !important;
-        grid-row: 3 !important;
+        grid-row: 2 !important;
         height: 126px !important;
     }
     
     .write-btn {
         grid-column: 2 !important;
-        grid-row: 4 !important;
+        grid-row: 3 !important;
         height: 126px !important;
-    }
-
-    /* Grid positions for empty spacer cells in Block 1 on mobile */
-    .cell-2-1 {
-        grid-column: 1 / span 2 !important;
-        grid-row: 2 !important;
-    }
-
-    .cell-3-2 {
-        grid-column: 1 / span 2 !important;
-        grid-row: 5 !important;
-    }
-
-    .cell-3-4 {
-        grid-column: 1 / span 2 !important;
-        grid-row: 7 !important;
-    }
-
-    .cell-4-2 {
-        grid-column: 1 / span 2 !important;
-        grid-row: 9 !important;
     }
     
     .bio-cell {
         grid-column: 1 / span 2 !important;
-        grid-row: 6 !important;
+        grid-row: 4 !important;
         height: 105px !important;
         padding: 15px 31px !important;
         background-color: #ffffff !important;
@@ -1203,7 +1179,7 @@ body:has(#fw-blue-card:hover) #custom-cursor .cursor-backdrop {
     
     .quote-cell {
         grid-column: 1 / span 2 !important;
-        grid-row: 8 !important;
+        grid-row: 5 !important;
         padding: 30px 0 !important;
         display: flex !important;
         justify-content: center !important;
