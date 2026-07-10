@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ИИ — Эксперименты с нейросетями | Сергей Тихонов</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --color-text-primary: rgba(0, 0, 0, 1);
+            --color-text-secondary: rgb(136, 139, 144);
+            --color-blue: #0010E5;
+            --color-bg: #FBFBFB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: var(--font-family);
+            background-color: var(--color-bg);
+            text-rendering: geometricPrecision;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--color-text-primary);
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Container Layout */
+        .project_article_wrapper {
+            width: 100%;
+            padding: 80px 80px 120px;
+            max-width: 100%;
+            margin: 0;
+        }
+
+        .merch_layout_container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: start;
+            gap: 40px;
+        }
+
+        .text_column {
+            position: sticky;
+            top: 80px;
+            width: 100%;
+            max-width: 360px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .text_column h1 {
+            font-size: 32px;
+            font-weight: 560;
+            line-height: 1.25;
+            color: var(--color-text-primary);
+            margin-bottom: 8px;
+        }
+
+        .text_column p {
+            font-size: 16px;
+            font-weight: 420;
+            line-height: 1.6;
+            color: var(--color-text-secondary);
+        }
+
+        /* Floating Nav Tabs Dock */
+        .navigation_tabs {
+            display: inline-flex;
+            padding: 2px;
+            justify-content: center;
+            align-items: center;
+            gap: 2px;
+            position: fixed;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+
+        .navigation_tabs:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 100px;
+            background: rgba(255,255,255,.68);
+            box-shadow: 0 2px 32px 0 rgba(0,0,0,.16);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            z-index: -1;
+        }
+
+        .navigation_tabs .nav_item_container {
+            display: flex;
+        }
+
+        .navigation_tabs .nav_item {
+            display: flex;
+            width: 51px;
+            height: 51px;
+            justify-content: center;
+            align-items: center;
+            aspect-ratio: 1/1;
+            color: var(--color-text-secondary);
+            transition: background-color 0.25s, color 0.25s;
+            border-radius: 50%;
+        }
+
+        .navigation_tabs .nav_item:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            color: var(--color-text-primary);
+        }
+
+        .profile_pic {
+            height: 1.5em;
+            width: 1.5em;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Gallery Grid Layout (Masonry style using CSS Column Layout) */
+        .gallery_grid {
+            column-count: 2;
+            column-gap: 20px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .gallery_item {
+            break-inside: avoid;
+            margin-bottom: 20px;
+            border-radius: 16px;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.03);
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .gallery_item:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery_item video {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
+            transform: translate3d(0, 0, 0);
+        }
+
+        /* Lightbox Popup Modal */
+        .lightbox_modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(251, 251, 251, 0.95);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox_modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox_content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .lightbox_close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: var(--color-text-secondary);
+            font-size: 40px;
+            font-weight: 300;
+            transition: color 0.2s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .lightbox_close:hover {
+            color: var(--color-text-primary);
+        }
+
+        body.lightbox_open {
+            overflow: hidden;
+        }
+
+        @media (max-width: 950px) {
+            .project_article_wrapper {
+                padding: 40px 40px 80px;
+            }
+            .merch_layout_container {
+                flex-direction: column;
+                gap: 40px;
+            }
+            .text_column {
+                position: static;
+                max-width: none;
+            }
+            .text_column h1 {
+                font-size: 28px;
+            }
+            .gallery_grid {
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .project_article_wrapper {
+                padding: 40px 20px 80px;
+            }
+            .gallery_grid {
+                column-count: 2;
+                column-gap: 12px;
+            }
+            .gallery_item {
+                margin-bottom: 12px;
+                border-radius: 12px;
+            }
+            .gallery_item video {
+                border-radius: 12px;
+            }
+            .lightbox_close {
+                top: 20px;
+                right: 20px;
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Bottom Dock Navigation -->
+    <nav class="navigation_tabs">
+        <div class="nav_item_container">
+            <a class="nav_item" title="На главную" href="index.html">
+                <img alt="Сергей Тихонов" class="profile_pic" src="img/profile_pic.png"/>
+            </a>
+        </div>
+        <div class="nav_item_container">
+            <a class="nav_item" title="Работы" href="index.html#work">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+            </a>
+        </div>
+        <div class="nav_item_container">
+            <a class="nav_item" title="Telegram" href="https://t.me/tikhonoxx" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="project_article_wrapper">
+        <div class="merch_layout_container">
+            <!-- Left Text Column -->
+            <div class="text_column">
+                <h1>ИИ</h1>
+                <p>Эксперименты с генеративным<br>искусством и создание визуальных<br>концептов с помощью нейросетей.</p>
+                <p>Изучаю возможности современных<br>моделей, генерирую анимации,<br>текстуры и 3D-формы для дизайна.</p>
+            </div>
+
+            <!-- Right Gallery Grid Column -->
+            <main class="gallery_grid">
+                <!-- Video 1 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_1.mp4"></video>
+                </div>
+                <!-- Video 2 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_2.mp4"></video>
+                </div>
+                <!-- Video 3 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_3.mp4"></video>
+                </div>
+                <!-- Video 4 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_4.mp4"></video>
+                </div>
+                <!-- Video 5 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_5.mp4"></video>
+                </div>
+                <!-- Video 6 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_6.mp4"></video>
+                </div>
+                <!-- Video 7 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_7.mp4"></video>
+                </div>
+                <!-- Video 8 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_8.mp4"></video>
+                </div>
+                <!-- Video 9 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_9.mp4"></video>
+                </div>
+                <!-- Video 10 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_10.mp4"></video>
+                </div>
+                <!-- Video 11 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_11.mp4"></video>
+                </div>
+                <!-- Video 12 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_12.mp4"></video>
+                </div>
+                <!-- Video 13 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_13.mp4"></video>
+                </div>
+                <!-- Video 14 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_14.mp4"></video>
+                </div>
+                <!-- Video 15 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_15.mp4"></video>
+                </div>
+                <!-- Video 16 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_16.mp4"></video>
+                </div>
+                <!-- Video 17 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_17.mp4"></video>
+                </div>
+                <!-- Video 18 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_18.mp4"></video>
+                </div>
+                <!-- Video 19 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_19.mp4"></video>
+                </div>
+                <!-- Video 20 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_20.mp4"></video>
+                </div>
+                <!-- Video 21 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_21.mp4"></video>
+                </div>
+                <!-- Video 22 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_22.mp4"></video>
+                </div>
+                <!-- Video 23 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_23.mp4"></video>
+                </div>
+                <!-- Video 24 -->
+                <div class="gallery_item">
+                    <video playsinline muted loop preload="metadata" src="img/ai_art_24.mp4"></video>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Lightbox Popup Modal -->
+    <div id="lightbox" class="lightbox_modal">
+        <span class="lightbox_close">&times;</span>
+        <video class="lightbox_content" id="lightbox_video" playsinline muted loop autoplay></video>
+    </div>
+
+    <!-- Video Controller Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxVideo = document.getElementById('lightbox_video');
+            const closeBtn = document.querySelector('.lightbox_close');
+            const galleryItems = document.querySelectorAll('.gallery_item');
+
+            // Viewport auto-play logic using Intersection Observer
+            const observerOptions = {
+                root: null,
+                rootMargin: '100px', // Pre-trigger before entering viewport for seamless play
+                threshold: 0.1
+            };
+
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const video = entry.target;
+                    if (entry.isIntersecting) {
+                        video.play().catch(err => {});
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, observerOptions);
+
+            galleryItems.forEach(item => {
+                const video = item.querySelector('video');
+                if (video) {
+                    videoObserver.observe(video);
+                }
+
+                // Click event to open video lightbox
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (video) {
+                        lightboxVideo.src = video.src;
+                        document.body.classList.add('lightbox_open');
+                        lightbox.classList.add('active');
+                    }
+                });
+            });
+
+            // Close lightbox logic
+            const closeLightbox = () => {
+                lightbox.classList.remove('active');
+                document.body.classList.remove('lightbox_open');
+                setTimeout(() => {
+                    lightboxVideo.src = '';
+                }, 300);
+            };
+
+            closeBtn.addEventListener('click', closeLightbox);
+            
+            // Close when clicking background outside video
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            // Close on ESC key press
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

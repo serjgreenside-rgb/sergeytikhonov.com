@@ -3,405 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сергей Тихонов — Мульти-дизайнер</title>
-    <meta name="description" content="Портфолио Сергея Тихонова — мульти-дизайнера. Руководство командами, дизайн-системы, веб-сайты и AI-проекты.">
-    <!-- Google Fonts -->
+    <title>Сергей Тихонов — Арт-директор & Мультидизайнер</title>
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom Style -->
-    <link rel="stylesheet" href="style.css?v=36">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Custom Cursor -->
-    <div class="custom-cursor" id="custom-cursor">
-        <div class="cursor-backdrop"></div>
-        <svg viewBox="0 0 24 24" class="cursor-arrow" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 3,3 L 20,10 L 12.5,12.5 L 10,20 Z" fill="#0571FF" stroke="#0571FF" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-        </svg>
-    </div>
-
-    <div class="artboard-container">
-        <!-- Background Grid Lines -->
-        <div class="grid-lines-background">
-            <div class="bg-v-line" style="left: 0;"></div>
-            <div class="bg-v-line" style="left: 20%;"></div>
-            <div class="bg-v-line" style="left: 40%;"></div>
-            <div class="bg-v-line" style="left: 60%;"></div>
-            <div class="bg-v-line" style="left: 80%;"></div>
-            <div class="bg-v-line" style="left: 100%;"></div>
-
-            <div class="bg-h-line" style="top: 0;"></div>
-            <div class="bg-h-line" style="top: 240px;"></div>
-            <div class="bg-h-line" style="top: 480px;"></div>
-            <div class="bg-h-line" style="top: 720px;"></div>
-            <div class="bg-h-line" style="top: 960px;"></div>
-            <div class="bg-h-line" style="top: 1200px;"></div>
-            <div class="bg-h-line" style="top: 1440px;"></div>
-            <div class="bg-h-line" style="top: 1680px;"></div>
-            <div class="bg-h-line" style="top: 1920px;"></div>
-            <div class="bg-h-line" style="top: 2160px;"></div>
-            <div class="bg-h-line" style="top: 2400px;"></div>
-            <div class="bg-h-line" style="top: 2640px;"></div>
-            <div class="bg-h-line" style="top: 2880px;"></div>
-            <div class="bg-h-line" style="top: 3120px;"></div>
-            <div class="bg-h-line" style="top: 3360px;"></div>
-            <div class="bg-h-line" style="top: 3600px;"></div>
-            <div class="bg-h-line" style="top: 3840px;"></div>
-            <div class="bg-h-line" style="top: 4080px;"></div>
-            <div class="bg-h-line" style="top: 4320px;"></div>
-            <div class="bg-h-line" style="top: 4560px;"></div>
-        </div>
-        <div class="grid-container">
-        <!-- ROW 1 -->
-        <div class="grid-cell header-title">
-            <h1>Сергей Тихонов</h1>
-            <div class="sub-title">АРТ-ДИРЕКТОР</div>
-        </div>
-        <div class="grid-cell cell-1-4"></div>
-        <div class="grid-cell cell-1-5"></div>
-
-        <!-- ROW 2 -->
-        <div class="grid-cell cell-2-1"></div>
-        <div class="grid-cell cell-2-2"></div>
-        <div class="grid-cell cell-2-3"></div>
-        <a href="#" class="grid-cell photo-btn cv-btn" id="link-cv">CV</a>
-        <div class="grid-cell header-photo">
-            <div class="photo-wrapper">
-                <img src="img/sergey_photo.png" alt="Портрет Сергея Тихонова, мульти-дизайнера, в очках и с длинными светлыми волосами">
-            </div>
-        </div>
-
-        <!-- ROW 3 -->
-        <div class="grid-cell bio-cell">
-            <p>
-                Я занимаюсь всем, что делает бренд живым: карточки для соцсетей, сайты, мерч, визуальные концепции. Развивал соцсети одновременно в нескольких странах и культурах. Руководил командой.  Прошёл путь от исполнителя до человека, который выстраивает визуальное направление целиком.
-            </p>
-        </div>
-        <a href="http://t.me/tikhonoxx" target="_blank" rel="noopener noreferrer" class="grid-cell photo-btn write-btn" id="link-write">Обсудить проект</a>
-        <div class="grid-cell cell-3-4"></div>
-        <!-- Column 5 in Row 3 is occupied by the bottom half of the photo -->
-
-        <!-- ROW 4 -->
-        <div class="grid-cell cell-4-1"></div>
-        <div class="grid-cell cell-4-2"></div>
-        <div class="grid-cell cell-4-3"></div>
-        <div class="grid-cell cell-4-4"></div>
-        <div class="grid-cell cell-4-5"></div>
-
-        <!-- ROW 5 -->
-        <div class="grid-cell cell-5-1"></div>
-        <div class="grid-cell cell-5-2"></div>
-        <div class="grid-cell quote-cell">
-            <blockquote class="scroll-quote">
-                <span class="quote-line">Дизайн — это не картинка.</span>
-                <span class="quote-line">Это решение, которое</span>
-                <span class="quote-line">либо работает, либо нет.</span>
-            </blockquote>
-        </div>
-        <div class="grid-cell cell-5-5"></div>
-
-        <!-- ROW 6 -->
-        <div class="grid-cell cell-6-1"></div>
-        <div class="grid-cell cell-6-2"></div>
-        <div class="grid-cell cell-6-3"></div>
-        <div class="grid-cell cell-6-4"></div>
-        <div class="grid-cell cell-6-5"></div>
-
-        <!-- ROW 7 -->
-        <div class="grid-cell section-label fw-label">
-            <h2>Flowwow<br>23-26</h2>
-        </div>
-        <div class="grid-cell fw-blue-card" id="fw-blue-card">
-            <div class="card-stack" id="fw-card-stack">
-                <div class="card active"><img src="img/fw_card_1.jpg" alt="Экран приложения Flowwow — карточка товара с деталями о букете цветов"></div>
-                <div class="card next"><img src="img/fw_card_2.jpg" alt="Иллюстрация курьера Flowwow, доставляющего цветы клиенту"></div>
-                <div class="card next-2"><img src="img/fw_card_3.jpg" alt="Фирменный баннер Flowwow с зелеными листьями растений"></div>
-                <div class="card"><img src="img/fw_card_4.jpg" alt="Интерфейс личного кабинета и программы лояльности в приложении Flowwow"></div>
-                <div class="card"><img src="img/fw_card_5.jpg" alt="Экран выбора цветов с фильтрами и категориями Flowwow"></div>
-                <div class="card"><img src="img/fw_card_6.jpg" alt="Рекламная графика Flowwow с праздничной композицией и цветами"></div>
-                <div class="card"><img src="img/fw_card_7.jpg" alt="Экран оформления заказа с интерактивной картой доставки Flowwow"></div>
-                <div class="card"><img src="img/fw_card_8.jpg" alt="Типографический баннер со слоганом и логотипом бренда Flowwow"></div>
-                <div class="card"><img src="img/fw_card_9.jpg" alt="Брендированный мокап подарочной коробки Flowwow с логотипом"></div>
-                <div class="card"><img src="img/fw_card_10.jpg" alt="Приветственный экран (onboarding) с яркими иллюстрациями приложения Flowwow"></div>
-            </div>
-        </div>
-        <div class="grid-cell stat-block fw-stat-1">
-            <div class="stat-num">3000+</div>
-            <div class="stat-label">креативов</div>
-        </div>
-        <div class="grid-cell cell-7-5"></div>
-
-        <!-- ROW 8 -->
-        <div class="grid-cell cell-8-1"></div>
-        <div class="grid-cell cell-8-4"></div>
-        <div class="grid-cell stat-block fw-stat-4">
-            <div class="stat-num">7</div>
-            <div class="stat-label">языков<br>на адаптации</div>
-        </div>
-
-        <!-- ROW 9 -->
-        <div class="grid-cell cell-9-1"></div>
-        <div class="grid-cell stat-block fw-stat-2">
-            <div class="stat-num">6</div>
-            <div class="stat-label">человек<br>в команде</div>
-        </div>
-        <div class="grid-cell cell-9-5"></div>
-
-        <!-- ROW 10 -->
-        <div class="grid-cell cell-10-1"></div>
-        <div class="grid-cell cell-10-2"></div>
-        <div class="grid-cell cell-10-3"></div>
-        <div class="grid-cell carousel-3d-container">
-            <div class="carousel-3d" id="fw-carousel-3d">
-                <div class="carousel-card active" style="transform: rotateY(0deg) translateZ(230px);"><img src="img/fw_prod_1.jpg" alt="Товар Flowwow — стильная керамическая ваза для цветов"></div>
-                <div class="carousel-card side" style="transform: rotateY(45deg) translateZ(230px);"><img src="img/fw_prod_2.jpg" alt="Товар Flowwow — подарочный набор с натуральным медом и сладостями"></div>
-                <div class="carousel-card" style="transform: rotateY(90deg) translateZ(230px);"><img src="img/fw_prod_3.jpg" alt="Товар Flowwow — декоративная ароматическая свеча ручной работы"></div>
-                <div class="carousel-card" style="transform: rotateY(135deg) translateZ(230px);"><img src="img/fw_prod_4.jpg" alt="Товар Flowwow — зеленое домашнее растение в минималистичном горшке"></div>
-                <div class="carousel-card" style="transform: rotateY(180deg) translateZ(230px);"><img src="img/fw_prod_5.png" alt="Товар Flowwow — фирменная коробка шоколадных конфет ручной работы"></div>
-                <div class="carousel-card" style="transform: rotateY(225deg) translateZ(230px);"><img src="img/fw_prod_6.jpg" alt="Товар Flowwow — элегантный набор ювелирных украшений из серебра"></div>
-                <div class="carousel-card" style="transform: rotateY(270deg) translateZ(230px);"><img src="img/fw_prod_7.jpg" alt="Товар Flowwow — подарочный набор натурального мыла и косметики"></div>
-                <div class="carousel-card side" style="transform: rotateY(315deg) translateZ(230px);"><img src="img/fw_prod_8.jpg" alt="Товар Flowwow — декоративная упаковочная бумага для оформления букетов"></div>
-            </div>
-        </div>
-
-        <!-- ROW 11 -->
-        <div class="grid-cell cell-11-1"></div>
-        <div class="grid-cell cell-11-2"></div>
-        <div class="grid-cell stat-block fw-stat-3">
-            <div class="stat-num">2</div>
-            <div class="stat-label">капсулы мерча</div>
-        </div>
-
-        <!-- Grid Intersections Crosses -->
-        <div class="grid-cross" style="top: 0; left: 0;"></div>
-        <div class="grid-cross" style="top: 0; left: 60%;"></div>
-        <div class="grid-cross" style="top: 240px; left: 0;"></div>
-        <div class="grid-cross" style="top: 480px; left: 0;"></div>
-        <div class="grid-cross" style="top: 720px; left: 0;"></div>
-        <div class="grid-cross" style="top: 960px; left: 40%;"></div>
-        <div class="grid-cross" style="top: 960px; left: 80%;"></div>
-        <div class="grid-cross" style="top: 1200px; left: 40%;"></div>
-        <div class="grid-cross" style="top: 1200px; left: 80%;"></div>
-        <div class="grid-cross" style="top: 1440px; left: 20%;"></div>
-        <div class="grid-cross" style="top: 1440px; left: 60%;"></div>
-        <div class="grid-cross" style="top: 2160px; left: 20%;"></div>
-        <div class="grid-cross" style="top: 2160px; left: 60%;"></div>
-        <div class="grid-cross" style="top: 2160px; left: 100%;"></div>
-        <div class="grid-cross" style="top: 2640px; left: 60%;"></div>
-        <div class="grid-cross" style="top: 2640px; left: 100%;"></div>
-
-        <!-- ROW 12 (Spacing Row) -->
-        <div class="grid-cell cell-12-1"></div>
-        <div class="grid-cell cell-12-2"></div>
-        <div class="grid-cell cell-12-3"></div>
-        <div class="grid-cell cell-12-4"></div>
-        <div class="grid-cell cell-12-5"></div>
-
-        <!-- ROW 13 & 14 (AI Block) -->
-        <div class="grid-cell section-label fw-ai-label">
-            <h2>AI</h2>
-        </div>
-        <div class="grid-cell ai-accordion-container">
-            <div class="accordion-item">
-                <video src="img/ai_art_1.mp4" autoplay loop muted playsinline></video>
-            </div>
-            <div class="accordion-item">
-                <video src="img/ai_art_2.mp4" autoplay loop muted playsinline></video>
-            </div>
-            <div class="accordion-item">
-                <video src="img/ai_art_3.mp4" autoplay loop muted playsinline></video>
-            </div>
-            <div class="accordion-item">
-                <video src="img/ai_art_4.mp4" autoplay loop muted playsinline></video>
-            </div>
-            <div class="accordion-item">
-                <video src="img/ai_art_5.mp4" autoplay loop muted playsinline></video>
-            </div>
-            <div class="accordion-item">
-                <video src="img/ai_art_6.mp4" autoplay loop muted playsinline></video>
-            </div>
-            <div class="accordion-item">
-                <video src="img/ai_art_7.mp4" autoplay loop muted playsinline></video>
-            </div>
-        </div>
-
-        <!-- Grid Intersections Crosses (Block 3) -->
-        <div class="grid-cross" style="top: 2880px; left: 20%;"></div>
-        <div class="grid-cross" style="top: 2880px; left: 100%;"></div>
-        <div class="grid-cross" style="top: 3360px; left: 20%;"></div>
-        <div class="grid-cross" style="top: 3360px; left: 100%;"></div>
-
-        <!-- ROW 15 (Spacing Row) -->
-        <div class="grid-cell cell-15-1"></div>
-        <div class="grid-cell cell-15-2"></div>
-        <div class="grid-cell cell-15-3"></div>
-        <div class="grid-cell cell-15-4"></div>
-        <div class="grid-cell cell-15-5"></div>
-
-        <!-- ROW 16 (WEB-SITES Label) -->
-        <div class="grid-cell section-label fw-ws-label">
-            <h2>WEB-SITES</h2>
-        </div>
-        <div class="grid-cell cell-16-2"></div>
-        <div class="grid-cell ws-card ws-card-1">
-            <a href="https://open.luzhniki.ru/" target="_blank" rel="noopener noreferrer">
-                <img src="img/web_site_1.png" alt="Дизайн сайта теннисного турнира Luzhniki Open — теннисистка перед ударом ракеткой">
+    <!-- Floating Bottom Navigation Dock -->
+    <nav class="navigation_tabs" data-expanded="true">
+        <div class="nav_item_container">
+            <a class="nav_item" title="Главная" href="#">
+                <img alt="Сергей Тихонов" class="profile_pic" src="img/profile_pic.png" />
             </a>
         </div>
-        <div class="grid-cell ws-card ws-card-2">
-            <a href="https://pavelvolya.com/" target="_blank" rel="noopener noreferrer">
-                <img src="img/web_site_2.png" alt="Официальный сайт Павла Воли — портрет артиста на синем фоне с неоновым шаром-бесконечностью">
+        <div class="nav_item_container">
+            <a class="nav_item" title="Работы" href="#work">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
             </a>
         </div>
-        <div class="grid-cell ws-card ws-card-3">
-            <a href="https://liasan.ru/?ysclid=mr0kgfhzl9606624881" target="_blank" rel="noopener noreferrer">
-                <img src="img/web_site_3.png" alt="Лендинг Liasan Show — портрет Ляйсан Утяшевой на контрастном сине-красном фоне">
+        <div class="nav_item_container">
+            <a class="nav_item" title="Контакты" href="https://t.me/tikhonoxx" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
             </a>
         </div>
+    </nav>
 
-        <!-- Grid Intersections Crosses (Block 4) -->
-        <div class="grid-cross" style="top: 3600px; left: 20%;"></div>
-        <div class="grid-cross" style="top: 3840px; left: 20%;"></div>
-
-        <!-- ROW 17 (Spacer Row) -->
-        <div class="grid-cell cell-17-1"></div>
-        <div class="grid-cell cell-17-2"></div>
-        <div class="grid-cell cell-17-3"></div>
-        <div class="grid-cell cell-17-4"></div>
-        <div class="grid-cell cell-17-5"></div>
-
-        <!-- ROW 18 (Footer Buttons) -->
-        <div class="grid-cell cell-18-1"></div>
-        <a href="http://t.me/tikhonoxx" target="_blank" rel="noopener noreferrer" class="grid-cell photo-btn footer-btn footer-write-btn" id="footer-link-write">Обсудить проект</a>
-        <div class="grid-cell cell-18-3"></div>
-        <a href="#" class="grid-cell photo-btn footer-btn footer-cv-btn" id="footer-link-cv">CV</a>
-        <div class="grid-cell cell-18-5"></div>
-
-        <!-- ROW 19 (Footer Date) -->
-        <div class="grid-cell cell-19-1"></div>
-        <div class="grid-cell cell-19-2"></div>
-        <div class="grid-cell footer-date-cell" id="footer-date">2026</div>
-        <div class="grid-cell cell-19-4"></div>
-        <div class="grid-cell cell-19-5"></div>
-    </div>
-</div>
-
-    <!-- Custom Modal for CV/Contact -->
-    <div class="modal" id="cv-modal">
-        <span class="close-btn" id="close-modal">&times;</span>
-        <div class="modal-content cv-modal-content">
-            <div class="cv-sheet">
-                <!-- TOP SECTION -->
-                <div class="cv-top-section">
-                    <!-- Top Left Column -->
-                    <div class="cv-top-left">
-                        <div class="cv-section cv-header">
-                            <h2>СЕРГЕЙ ТИХОНОВ</h2>
-                            <div class="cv-subtitle">Креативный дизайнер</div>
-                        </div>
-                        
-                        <div class="cv-section">
-                            <h3>ОБО МНЕ</h3>
-                            <p>06 | Февраль | 1995</p>
-                            <p>Москва, Россия</p>
-                            <p><a href="mailto:serjgreenside@gmail.com" class="cv-email">serjgreenside@gmail.com</a></p>
-                        </div>
-                        
-                        <div class="cv-section">
-                            <h3>ЦЕННОСТИ</h3>
-                            <p>Честность</p>
-                            <p>Вовлечённость</p>
-                            <p>Насмотренность</p>
-                            <p>Внимание к деталям</p>
-                            <p>Любопытство</p>
-                            <p>Страсть к работе</p>
-                            <p>Команднобразование</p>
-                            <p>Инициативность</p>
-                            <p>Профессиональный рост</p>
-                        </div>
-                        
-                        <div class="cv-section">
-                            <h3>НАВЫКИ</h3>
-                            <p>Digital-контент для соцсетей</p>
-                            <p>Визуальная стратегия и брендинг</p>
-                            <p>Креативы для B2B и B2C</p>
-                            <p>AI-генерация визуалов</p>
-                            <p>Работа с ИИ-инструментами в дизайн-процессе</p>
-                            <p>Разработка гайдов и стандартов</p>
-                            <p>Адаптация контента под аудитории</p>
-                            <p>Типографика и леттеринг</p>
-                            <p>Моушн и анимация</p>
-                            <p>Мудборды и концепции</p>
-                            <p>Работа с аналитикой креативов</p>
-                            <p>Наставничество и тимлидерство</p>
-                            <p>Презентации и клиентские предложения</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Top Right Column -->
-                    <div class="cv-top-right">
-                        <div class="cv-photo-container">
-                            <img src="img/sergey_photo.png" alt="Портрет Сергея Тихонова в очках на светлом фоне для резюме" class="cv-portrait">
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- BOTTOM SECTION -->
-                <div class="cv-bottom-section">
-                    <!-- Bottom Left Column -->
-                    <div class="cv-bottom-left">
-                        <div class="cv-section">
-                            <h3>ИНСТРУМЕНТЫ</h3>
-                            <p>Figma</p>
-                            <p>Midjourney</p>
-                            <p>Photoshop</p>
-                            <p>After Effects</p>
-                            <p>Illustrator</p>
-                            <p>Tilda</p>
-                            <p>Jira</p>
-                            <p>ChatGPT / Claude</p>
-                        </div>
-                        
-                        <div class="cv-section cv-links-section">
-                            <h3>ССЫЛКИ</h3>
-                            <p><a href="https://behance.net" target="_blank" class="cv-link-item">Behance</a></p>
-                            <p><a href="https://instagram.com" target="_blank" class="cv-link-item">Instagram</a></p>
-                        </div>
-                    </div>
-                    
-                    <!-- Bottom Right Column -->
-                    <div class="cv-bottom-right">
-                        <div class="cv-section text-right">
-                            <h3>ОПЫТ</h3>
-                            <div class="cv-job-block">
-                                <div class="cv-job-title">Главный дизайнер</div>
-                                <div class="cv-job-company">Флаувау | 2023+</div>
-                            </div>
-                            <div class="cv-job-block">
-                                <div class="cv-job-title">Арт-директор</div>
-                                <div class="cv-job-company">Киношкола «ХохСаб» | 2021 — 2024</div>
-                            </div>
-                            <div class="cv-job-block">
-                                <div class="cv-job-title">Арт-директор</div>
-                                <div class="cv-job-company">Агентство аутентичности | 2022</div>
-                            </div>
-                        </div>
-                        
-                        <div class="cv-section text-right">
-                            <h3>ОБУЧЕНИЕ</h3>
-                            <div class="cv-job-block">
-                                <div class="cv-job-title">Креативный подход в бизнесе: от идеи до решения</div>
-                                <div class="cv-job-company">British Higher school of Art&Design | 2024</div>
-                            </div>
-                        </div>
-                    </div>
+    <div class="home">
+        <!-- Sidebar on the Left -->
+        <section class="sidebar">
+            <div class="intro_container">
+                <div class="text-block">
+                    <p class="intro-greeting">Меня зовут Серёжа.</p>
+                    <p>Я занимаюсь всем, что делает бренд живым: карточки для соцсетей, сайты, мерч, визуальные концепции.</p>
+                    <p>Развивал соцсети одновременно в нескольких странах и культурах. Руководил командой.</p>
+                    <p>Руководил командой. Прошёл путь от исполнителя до человека, который выстраивает визуальное направление целиком.</p>
                 </div>
             </div>
-        </div>
-    </div>
+            
+            <nav class="navigation delayed_fade_in">
+                <a class="button" href="#work">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    Работы
+                </a>
+                <a class="button" href="https://t.me/tikhonoxx" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    Telegram
+                </a>
+            </nav>
+        </section>
 
-    <!-- App Script -->
+        <!-- Featured Projects on the Right -->
+        <section class="featured_projects delayed_fade_in" id="work">
+            <!-- Project 1 (Flowwow - Video Card) -->
+            <div class="project flowwow_project">
+                <a class="project_thumbnail" data-expressive="true" href="flowwow.html">
+                    <span class="accessibility_label">Flowwow Project</span>
+                    <div class="project_artwork fw_artwork" id="fw-blue-card" style="background: transparent; -webkit-mask-image: -webkit-radial-gradient(white, black); transform: translateZ(0);">
+                        <video src="video/fw_cover_yandex.mp4" loop="" muted="" autoplay="" playsinline="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"></video>
+                    </div>
+                    <div class="project_info">
+                        <div class="progressive_blur">
+                            <div class="blur_filter"></div>
+                            <div class="blur_filter"></div>
+                            <div class="blur_filter"></div>
+                            <div class="blur_filter"></div>
+                            <div class="blur_filter"></div>
+                            <div class="blur_filter"></div>
+                            <div class="blur_filter"></div>
+                            <div class="gradient"></div>
+                        </div>
+                        <h3 class="title">Flowwow</h3>
+                        <span class="subtitle">23 — 26</span>
+                    </div>
+                </a>
+                <!-- Mobile info shown below the thumbnail on mobile screens -->
+                <div class="mobile_card_info">
+                    <p class="card_title">Flowwow</p>
+                    <p class="card_tags">Арт-дирекшн, Продуктовый дизайн, Брендинг</p>
+                    <p class="card_excerpt">Создание дизайн-системы, редизайн ключевых сценариев оформления заказов и улучшение конверсии.</p>
+                </div>
+            </div>
+
+            <!-- Project 2 (Flowwow Case - Image Card) -->
+            <div class="project">
+                <a class="project_thumbnail" data-expressive="true" href="flowwow-merch.html">
+                    <span class="accessibility_label">Flowwow</span>
+                    <div class="project_artwork">
+                        <img alt="Flowwow" loading="lazy" src="img/fw_merch_cover.jpg"/>
+                    </div>
+                    <div class="project_info">
+                        <div class="progressive_blur">
+                            <div class="blur_filter"></div>
+                            <div class="blur_filter"></div>
+                            <div class="blur_filter"></div>
+                            <div class="blur_filter"></div>
+                            <div class="blur_filter"></div>
+                            <div class="blur_filter"></div>
+                            <div class="blur_filter"></div>
+                            <div class="gradient"></div>
+                        </div>
+                        <h3 class="title">Flowwow</h3>
+                        <span class="subtitle">25 — 26</span>
+                    </div>
+                </a>
+                <div class="mobile_card_info">
+                    <p class="card_title">Flowwow</p>
+                    <p class="card_tags">Брендинг, Мерч, Айдентика</p>
+                    <p class="card_excerpt">Создание концепции фирменного мерча и рекламных материалов бренда.</p>
+                </div>
+            </div>
+
+            <!-- Project 3 (AI Art - Video Card) -->
+            <div class="project">
+                <a class="project_thumbnail theme-dark-text" data-expressive="true" href="ai.html">
+                    <span class="accessibility_label">ИИ</span>
+                    <div class="project_artwork">
+                        <video playsinline="" muted="" loop="" autoplay="" preload="metadata">
+                            <source src="img/AI Cover.mp4" type="video/mp4"/>
+                        </video>
+                    </div>
+                    <div class="project_info">
+                        <div class="progressive_blur">
+                            <div class="blur_filter"></div>
+                            <div class="blur_filter"></div>
+                            <div class="blur_filter"></div>
+                            <div class="blur_filter"></div>
+                            <div class="blur_filter"></div>
+                            <div class="blur_filter"></div>
+                            <div class="blur_filter"></div>
+                            <div class="gradient"></div>
+                        </div>
+                        <h3 class="title">ИИ</h3>
+                        <span class="subtitle">26</span>
+                    </div>
+                </a>
+                <div class="mobile_card_info">
+                    <p class="card_title">ИИ</p>
+                    <p class="card_tags">Нейросети, Генеративный дизайн</p>
+                    <p class="card_excerpt">Эксперименты с генеративным искусством и создание концептов при помощи нейросетей.</p>
+                </div>
+            </div>
+
+            <!-- Footer / View More inside featured_projects column -->
+            <div class="view-more-grid-button">
+                <div class="center_content">
+                    <a href="https://t.me/tikhonoxx" target="_blank" rel="noopener noreferrer" class="button btn-secondary">
+                        Связаться в Telegram
+                    </a>
+                </div>
+                <footer class="footer">
+                    <p>© Сергей Тихонов, 2026</p>
+                </footer>
+            </div>
+        </section>
+    </div>
+    
     <script src="app.js"></script>
 </body>
 </html>

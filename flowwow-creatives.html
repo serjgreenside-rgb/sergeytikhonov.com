@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Flowwow Creative Gallery | Сергей Тихонов</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --color-text-primary: rgba(0, 0, 0, 0.9);
+            --color-text-secondary: rgb(136, 139, 144);
+            --color-blue: #0010E5;
+            --color-bg: #FBFBFB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: var(--font-family);
+            background-color: var(--color-bg);
+            text-rendering: geometricPrecision;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--color-text-primary);
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 60px 40px 120px;
+        }
+
+        @media (max-width: 850px) {
+            .container {
+                padding: 40px 20px 80px;
+            }
+        }
+
+        /* Back Button Navigation */
+        .back_nav {
+            margin-bottom: 48px;
+        }
+
+        .back_btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-text-secondary);
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .back_btn:hover {
+            color: var(--color-blue);
+            transform: translateX(-4px);
+        }
+
+        .back_btn svg {
+            transition: stroke 0.2s ease;
+        }
+
+        /* Gallery Grid Layout (Masonry style using CSS Column Layout) */
+        .gallery_grid {
+            column-count: 5;
+            column-gap: 20px;
+            width: 100%;
+        }
+
+        @media (max-width: 1024px) {
+            .gallery_grid {
+                column-count: 3;
+                column-gap: 16px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery_grid {
+                column-count: 2;
+                column-gap: 12px;
+            }
+        }
+
+        /* Gallery Item Card */
+        .gallery_item {
+            position: relative;
+            background: #FFFFFF;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+            break-inside: avoid;
+            -webkit-column-break-inside: avoid;
+            page-break-inside: avoid;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1024px) {
+            .gallery_item {
+                margin-bottom: 16px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery_item {
+                margin-bottom: 12px;
+                border-radius: 16px;
+            }
+        }
+
+        .gallery_item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+            border-color: rgba(0, 16, 229, 0.08);
+        }
+
+        .gallery_item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery_item:hover img {
+            transform: scale(1.02);
+        }
+
+        /* Lightbox Modal */
+        .lightbox_modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.9);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox_modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox_content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 60px;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .lightbox_modal.active .lightbox_content {
+            transform: scale(1);
+        }
+
+        .lightbox_close {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 40px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            user-select: none;
+        }
+
+        .lightbox_close:hover {
+            color: #FFFFFF;
+        }
+
+        /* Prevent page scrolling when lightbox is open */
+        body.lightbox_open {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Back Button -->
+        <div class="back_nav">
+            <a href="flowwow.html" class="back_btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Вернуться к кейсу
+            </a>
+        </div>
+
+        <!-- Gallery Grid -->
+        <main class="gallery_grid">
+            <!-- 34 Creative moodboard items generated from original collage -->
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_1.jpg" alt="Креатив 1" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_2.jpg" alt="Креатив 2" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_3.jpg" alt="Креатив 3" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_4.jpg" alt="Креатив 4" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_5.jpg" alt="Креатив 5" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_6.jpg" alt="Креатив 6" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_7.jpg" alt="Креатив 7" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_8.jpg" alt="Креатив 8" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_9.jpg" alt="Креатив 9" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_10.jpg" alt="Креатив 10" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_11.jpg" alt="Креатив 11" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_12.jpg" alt="Креатив 12" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_13.jpg" alt="Креатив 13" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_14.jpg" alt="Креатив 14" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_15.jpg" alt="Креатив 15" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_16.jpg" alt="Креатив 16" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_17.jpg" alt="Креатив 17" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_18.jpg" alt="Креатив 18" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_19.jpg" alt="Креатив 19" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_20.jpg" alt="Креатив 20" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_21.jpg" alt="Креатив 21" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_22.jpg" alt="Креатив 22" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_23.jpg" alt="Креатив 23" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_24.jpg" alt="Креатив 24" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_25.jpg" alt="Креатив 25" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_26.jpg" alt="Креатив 26" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_27.jpg" alt="Креатив 27" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_28.jpg" alt="Креатив 28" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_29.jpg" alt="Креатив 29" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_30.jpg" alt="Креатив 30" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_31.jpg" alt="Креатив 31" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_32.jpg" alt="Креатив 32" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_33.jpg" alt="Креатив 33" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_34.jpg" alt="Креатив 34" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_35.jpg" alt="Креатив 35" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_36.jpg" alt="Креатив 36" loading="lazy" />
+            </div>
+            <div class="gallery_item">
+                <img src="img/gallery/fw_gall_37.jpg" alt="Креатив 37" loading="lazy" />
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox Popup Modal -->
+    <div id="lightbox" class="lightbox_modal">
+        <span class="lightbox_close">&times;</span>
+        <img class="lightbox_content" id="lightbox_img" src="" alt="Крупный вид" />
+    </div>
+
+    <!-- Lightbox Controller Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox_img');
+            const closeBtn = document.querySelector('.lightbox_close');
+            const galleryItems = document.querySelectorAll('.gallery_item');
+
+            galleryItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const img = item.querySelector('img');
+                    if (img) {
+                        lightboxImg.src = img.src;
+                        lightboxImg.alt = img.alt;
+                        document.body.classList.add('lightbox_open');
+                        lightbox.classList.add('active');
+                    }
+                });
+            });
+
+            const closeLightbox = () => {
+                lightbox.classList.remove('active');
+                document.body.classList.remove('lightbox_open');
+                setTimeout(() => {
+                    lightboxImg.src = '';
+                }, 300);
+            };
+
+            closeBtn.addEventListener('click', closeLightbox);
+            
+            // Close when clicking background outside image
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            // Close on ESC key press
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

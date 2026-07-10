@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Flowwow — Кейс | Сергей Тихонов</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-title-regular: 420 32px/1.2 var(--font-family);
+            --font-title-medium: 560 32px/1.2 var(--font-family);
+            --font-heading-regular: 420 22px/1.4 var(--font-family);
+            --font-heading-medium: 560 22px/1.4 var(--font-family);
+            --font-subtitle-regular: 420 18px/1.4 var(--font-family);
+            --font-subtitle-medium: 520 18px/1.4 var(--font-family);
+            --font-body-regular: 420 16px/1.6 var(--font-family);
+            --font-body-medium: 560 16px/1.6 var(--font-family);
+            --font-footnote-regular: 420 14px/1.6 var(--font-family);
+            --font-footnote-medium: 560 14px/1.6 var(--font-family);
+            --color-text-primary: rgba(0, 0, 0, 1);
+            --color-text-secondary: rgb(136, 139, 144);
+            --safe-area-inset-bottom: 91px;
+        }
+
+        /* Basic resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: var(--font-family);
+            text-rendering: geometricPrecision;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #FBFBFB;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--color-text-primary);
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: rgba(0, 0, 0, 0.08);
+            margin: 40px 0;
+        }
+
+        ::selection {
+            background: #000000 !important;
+            color: #FFFFFF !important;
+        }
+
+        /* Floating Nav Tabs Dock */
+        .navigation_tabs {
+            display: inline-flex;
+            padding: 2px;
+            justify-content: center;
+            align-items: center;
+            gap: 2px;
+            position: fixed;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+
+        .navigation_tabs:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 100px;
+            background: rgba(255,255,255,.68);
+            box-shadow: 0 2px 32px 0 rgba(0,0,0,.16);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            z-index: -1;
+        }
+
+        .navigation_tabs .nav_item_container {
+            display: flex;
+        }
+
+        .navigation_tabs .nav_item {
+            display: flex;
+            width: 51px;
+            height: 51px;
+            justify-content: center;
+            align-items: center;
+            aspect-ratio: 1/1;
+            color: var(--color-text-secondary);
+            transition: background-color 0.25s, color 0.25s;
+            border-radius: 50%;
+        }
+
+        .navigation_tabs .nav_item:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            color: var(--color-text-primary);
+        }
+
+        .profile_pic {
+            height: 1.5em;
+            width: 1.5em;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Article Container & Layout */
+        .design_project_article {
+            margin: 0 auto;
+            padding: 80px 40px 120px;
+            max-width: 1600px;
+            display: block;
+            opacity: 0;
+            animation: projectArticleSlideUp 1s cubic-bezier(.28,.11,.32,1) .2s forwards;
+        }
+
+        @keyframes projectArticleSlideUp {
+            0% {
+                opacity: 0;
+                transform: scale(.95) translateY(16px);
+                filter: blur(8px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        @media(max-width:850px){
+            .design_project_article {
+                padding: 80px 20px;
+            }
+        }
+
+        .design_project_article > :not(:first-child) {
+            padding-top: 40px;
+        }
+
+        /* Article Header */
+        .project_article_header {
+            --max-width: 1280px;
+            --grid-gap: 40px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: var(--grid-gap);
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        @media(max-width:850px){
+            .project_article_header {
+                grid-template-columns: auto;
+                grid-auto-flow: row;
+                grid-gap: 20px;
+            }
+        }
+
+        .project_article_header > :not(.basic_info):not(.excerpt):not(hr) {
+            grid-column: 1/-1;
+        }
+
+        @media(max-width:850px){
+            .project_article_header > :not(.basic_info):not(.excerpt):not(hr) {
+                grid-row: 2;
+            }
+        }
+
+        .project_article_header .basic_info {
+            width: 100%;
+            max-width: calc(var(--max-width)/2 - var(--grid-gap)/2);
+            margin-left: auto;
+        }
+
+        @media(max-width:850px){
+            .project_article_header .basic_info {
+                width: auto;
+                max-width: none;
+                margin-left: 0;
+            }
+        }
+
+        .project_article_header .basic_info .title {
+            font: var(--font-title-medium);
+            color: var(--color-text-primary);
+            letter-spacing: -.02em;
+        }
+
+        .project_article_header .basic_info .subtitle {
+            font: var(--font-body-regular);
+            color: var(--color-text-secondary);
+            margin: 8px 0 0;
+            padding: 0;
+        }
+
+        .project_article_header .excerpt {
+            width: 100%;
+            max-width: calc(var(--max-width)/2 - var(--grid-gap)/2);
+            margin-right: auto;
+            font: var(--font-heading-regular);
+            color: var(--color-text-primary);
+            letter-spacing: -.03em;
+        }
+
+        @media(max-width:850px){
+            .project_article_header .excerpt {
+                width: auto;
+                max-width: none;
+                margin-right: 0;
+            }
+        }
+
+        .project_article_header hr {
+            grid-column: 1/-1;
+            width: 100%;
+            height: 1px;
+            background: #e7e8e9;
+            border: none;
+            outline: none;
+            margin: 20px 0 0;
+            display: none;
+        }
+
+        @media(max-width:850px){
+            .project_article_header hr {
+                display: block;
+            }
+        }
+
+        /* Artwork Cover Card */
+        .project_thumbnail {
+            --radius: 16px;
+            position: relative;
+            display: block;
+            margin: 0;
+            text-decoration: none;
+            color: unset;
+            border-radius: var(--radius);
+            overflow: hidden;
+            -webkit-mask-box-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 25.6C0 16.6392 0 12.1587 1.7439 8.73615C3.27787 5.72556 5.72556 3.27787 8.73615 1.7439C12.1587 0 16.6392 0 25.6 0H74.4C83.3608 0 87.8413 0 91.2638 1.7439C94.2744 3.27787 96.7221 5.72556 98.2561 8.73615C100 12.1587 100 16.6392 100 25.6V74.4C100 83.3608 100 87.8413 98.2561 91.2638C96.7221 94.2744 94.2744 96.7221 91.2638 98.2561C87.8413 100 83.3608 100 74.4 100H25.6C16.6392 100 12.1587 100 8.73615 98.2561C5.72556 96.7221 3.27787 94.2744 1.7439 91.2638C0 87.8413 0 83.3608 0 74.4V25.6Z" fill="black"/></svg>') 16/var(--radius)/0;
+        }
+
+        @media(max-width:850px){
+            .project_thumbnail {
+                --radius: 0;
+                -webkit-mask-box-image: none;
+            }
+        }
+
+        .project_thumbnail .project_artwork {
+            position: relative;
+            display: block;
+            margin: 0;
+            overflow: hidden;
+            background: #FFE9EE; /* Brand light pink background */
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            --rotate-x: 0deg;
+            --rotate-y: 0deg;
+        }
+
+        .card-stack {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1500px;
+            transform-style: preserve-3d;
+            animation: stackFloat 5s ease-in-out infinite;
+        }
+
+        @keyframes stackFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .card-stack .card {
+            position: absolute;
+            width: 440px;   /* Doubled size to match main page and look premium */
+            height: 550px;  /* Aspect ratio matches original cards nicely */
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+            background-color: #ffffff;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                        opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                        box-shadow 0.3s ease;
+            pointer-events: none;
+            transform-origin: bottom center;
+            backface-visibility: hidden;
+        }
+
+        .card-stack .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        /* Card stack states with 3D tilt properties */
+        .card-stack .card.active {
+            transform: scale(1) translateY(0) rotate(0deg) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg)) translateZ(20px);
+            opacity: 1;
+            z-index: 10;
+            pointer-events: auto; /* Allow clicks on case study page */
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+            cursor: pointer;
+        }
+
+        .card-stack .card.next {
+            transform: scale(0.93) translateY(32px) rotate(-1.5deg) rotateX(calc(var(--rotate-x, 0deg) * 0.7)) rotateY(calc(var(--rotate-y, 0deg) * 0.7)) translateZ(10px);
+            opacity: 0.9;
+            z-index: 9;
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-stack .card.next-2 {
+            transform: scale(0.86) translateY(64px) rotate(1.5deg) rotateX(calc(var(--rotate-x, 0deg) * 0.4)) rotateY(calc(var(--rotate-y, 0deg) * 0.4)) translateZ(0px);
+            opacity: 0.8;
+            z-index: 8;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .card-stack .card.exit {
+            transform: translate(160%, -20px) rotate(15deg) translateZ(50px);
+            opacity: 0;
+            z-index: 11;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease-in;
+        }
+
+        /* Rest of the stack hidden */
+        .card-stack .card:not(.active):not(.next):not(.next-2):not(.exit) {
+            transform: scale(0.8) translateY(96px) translateZ(-20px);
+            opacity: 0;
+            z-index: 1;
+        }
+
+        /* Responsive stack sizes */
+        @media(max-width: 850px) {
+            .card-stack .card {
+                width: 240px;
+                height: 300px;
+            }
+            .card-stack .card.next {
+                transform: scale(0.93) translateY(16px) rotate(-1.5deg) translateZ(10px);
+            }
+            .card-stack .card.next-2 {
+                transform: scale(0.86) translateY(32px) rotate(1.5deg) translateZ(0px);
+            }
+            .card-stack .card:not(.active):not(.next):not(.next-2):not(.exit) {
+                transform: scale(0.8) translateY(48px) translateZ(-20px);
+            }
+        }
+
+        /* Overrides for card-stack when placed in the right content column */
+        .content .project_artwork {
+            position: relative;
+            display: block;
+            margin: 0;
+            overflow: hidden; /* Prevent cards from spilling outside the pink square boundary */
+            background: #FFE9EE; /* Brand light pink background */
+            padding-top: 100%; /* 1:1 Aspect Ratio (Square) */
+            border-radius: 16px;
+            --rotate-x: 0deg;
+            --rotate-y: 0deg;
+        }
+
+        .content .card-stack .card {
+            width: 300px;
+            height: 375px;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+        .content .card-stack .card.active {
+            transform: scale(1) translateY(0) rotate(0deg) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg)) translateZ(20px);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+        }
+        .content .card-stack .card.next {
+            transform: scale(0.93) translateY(20px) rotate(-1.5deg) rotateX(calc(var(--rotate-x, 0deg) * 0.7)) rotateY(calc(var(--rotate-y, 0deg) * 0.7)) translateZ(10px);
+            opacity: 0.9;
+        }
+        .content .card-stack .card.next-2 {
+            transform: scale(0.86) translateY(40px) rotate(1.5deg) rotateX(calc(var(--rotate-x, 0deg) * 0.4)) rotateY(calc(var(--rotate-y, 0deg) * 0.4)) translateZ(0px);
+            opacity: 0.8;
+        }
+        .content .card-stack .card:not(.active):not(.next):not(.next-2):not(.exit) {
+            transform: scale(0.8) translateY(60px) translateZ(-20px);
+            opacity: 0;
+        }
+        .content .card-stack .card.exit {
+            transform: translate(160%, -10px) rotate(15deg) translateZ(50px);
+            opacity: 0;
+        }
+
+        /* ==========================================================================================
+           HORIZONTAL FAN-OUT CARD INTERACTIVE LIST (ANDREAS ANIMATION)
+           ========================================================================== */
+        .cards_fan_container {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 50px 20px;
+            background: #fcfcfc;
+            border-radius: 16px;
+            overflow: visible;
+            position: relative;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.02);
+            margin: 20px 0;
+        }
+
+        .fan_row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            overflow: visible;
+        }
+
+        .fan_row:first-child {
+            position: relative;
+            z-index: 3;
+        }
+
+        .fan_row:last-child {
+            position: relative;
+            z-index: 2;
+            margin-top: -55px; /* Overlap vertically */
+        }
+
+        /* Lift the entire row's z-index context when hovered so its cards render on top of the other row */
+        .fan_row:hover {
+            z-index: 4 !important;
+        }
+
+        .fan_card {
+            position: relative;
+            width: 170px;
+            height: 212px;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #ffffff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            border: 2px solid #ffffff;
+            margin-left: -32px; /* Overlap effect */
+            flex-shrink: 0;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        opacity 0.3s ease, 
+                        box-shadow 0.3s ease, 
+                        z-index 0.1s;
+            cursor: pointer;
+            z-index: 2;
+            transform: rotate(var(--orig-rot)) translateY(var(--orig-y));
+        }
+
+        /* Prevent left margin offset on the very first card in each row to keep centering */
+        .fan_row .fan_card:first-child {
+            margin-left: 0;
+        }
+
+        .fan_card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        /* Hover animation details */
+        .fan_card:hover {
+            transform: rotate(0deg) scale(1.3) translateY(-20px) !important;
+            opacity: 1 !important;
+            z-index: 50 !important;
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.18);
+        }
+
+        /* Soft fade-out on all other cards when one is hovered */
+        .cards_fan_container:hover .fan_card:not(:hover) {
+            opacity: 0.55;
+            transform: scale(0.92) rotate(var(--orig-rot)) translateY(var(--orig-y));
+        }
+
+        /* Responsive scaling */
+        @media (max-width: 850px) {
+            .cards_fan_container {
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding: 40px 10px;
+                gap: 10px;
+            }
+            .fan_card {
+                width: 100px;
+                height: 125px;
+                margin-left: 0;
+                transform: none !important; /* Flatten rotations on mobile for horizontal scrolling */
+            }
+            .cards_fan_container:hover .fan_card:not(:hover) {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* ==========================================================================
+           GLOBAL COUNTRIES CROSSFADE + KEN BURNS CAROUSEL (OPTION 1)
+           ========================================================================== */
+        /* Global Countries section is now presented using a responsive video player */
+
+        /* Splits Grid Body layout */
+        .design_project_article .design_project_article_body {
+            font: var(--font-body-regular);
+            color: var(--color-text-primary);
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 40px;
+        }
+
+        @media(max-width:850px){
+            .design_project_article .design_project_article_body {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .design_project_article .design_project_article_body .content {
+            grid-column: 2;
+        }
+
+        @media(max-width:850px){
+            .design_project_article .design_project_article_body .content {
+                grid-column: 1;
+            }
+        }
+
+        .design_project_article .design_project_article_body .content hr {
+            width: 100%;
+            height: 1px;
+            background: #e7e8e9;
+            border: none;
+            outline: none;
+            margin: 0;
+        }
+
+        .design_project_article .design_project_article_body .content hr:not(:first-child) {
+            margin-top: 2em;
+        }
+
+        .design_project_article .design_project_article_body .content blockquote,
+        .design_project_article .design_project_article_body .content p {
+            width: 100%;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .design_project_article .design_project_article_body .content blockquote:not(:first-child):not(figure+p),
+        .design_project_article .design_project_article_body .content p:not(:first-child):not(figure+p) {
+            margin-top: 1.2em;
+        }
+
+        .design_project_article .design_project_article_body .content strong {
+            font-weight: 560;
+        }
+
+        .design_project_article .design_project_article_body .content h2 {
+            font: var(--font-heading-medium);
+            letter-spacing: -.03em;
+        }
+
+        .design_project_article .design_project_article_body .content h2:not(:first-child):not(figure+h2) {
+            margin-top: 2em;
+        }
+
+        .design_project_article .design_project_article_body .content blockquote {
+            font: var(--font-heading-regular);
+            letter-spacing: -.03em;
+            padding: 20px 0;
+            font-style: italic;
+        }
+
+        /* Assets block grids */
+        .project_article_asset {
+            padding: 40px 0;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .project_article_asset .video_container {
+            width: 100%;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            background: transparent;
+            /* Webkit hack to force clean rounded corner clipping on video layers */
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+            transform: translateZ(0);
+        }
+
+        .project_article_asset .project_article_video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 12px;
+        }
+
+        .project_article_asset figcaption {
+            display: block;
+            font: var(--font-footnote-regular);
+            color: var(--color-text-secondary);
+            margin: 8px 0 0;
+            padding: 0 4px;
+        }
+
+        /* Sticky Left credits grid */
+        .design_project_article .design_project_article_body .credits {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 40px;
+            width: 100%;
+            height: min-content;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 40px;
+            grid-row: 1;
+            grid-column: 1;
+        }
+
+        @media(max-width:1080px){
+            .design_project_article .design_project_article_body .credits {
+                grid-gap: 20px;
+            }
+        }
+
+        @media(max-width:850px){
+            .design_project_article .design_project_article_body .credits {
+                position: static;
+                grid-row: initial;
+                margin-top: 40px;
+            }
+        }
+
+        .design_project_article .design_project_article_body .credits .item > :not(:first-child) {
+            margin-top: 2px;
+        }
+
+        .design_project_article .design_project_article_body .credits .item h3,
+        .design_project_article .design_project_article_body .credits .item p {
+            font: var(--font-body-regular);
+            margin: 0;
+            padding: 0;
+        }
+
+        .design_project_article .design_project_article_body .credits .item h3 {
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+
+        /* Next Project Peek Footer styling */
+        .next_project_peek {
+            margin: 60px auto 0;
+            padding: 0 40px 120px;
+            max-width: 1600px;
+            position: relative;
+        }
+
+        .next_project_peek hr {
+            width: 100%;
+            height: 1px;
+            background: #e7e8e9;
+            border: none;
+            outline: none;
+            margin: 0 0 40px;
+        }
+
+        .next_project_peek .project_article_header_container {
+            display: block;
+        }
+
+        .next_project_peek .project_access {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        @media(max-width:850px){
+            .next_project_peek {
+                padding: 0 20px 80px;
+            }
+        }
+
+        /* Minimalist Gallery Link Button */
+        .gallery_btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            border-radius: 100px;
+            background-color: #0010E5;
+            color: #FFFFFF;
+            font-family: var(--font-family);
+            font-size: 15px;
+            font-weight: 560;
+            letter-spacing: -0.01em;
+            text-decoration: none;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 24px;
+            border: 1px solid #0010E5;
+            box-shadow: 0 4px 16px rgba(0, 16, 229, 0.16);
+        }
+
+        .gallery_btn:hover {
+            background-color: #FFFFFF;
+            color: #0010E5;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 16, 229, 0.24);
+        }
+
+        .gallery_btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 8px rgba(0, 16, 229, 0.16);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="__next">
+        <!-- Floating Bottom Dock Navigation -->
+        <nav class="navigation_tabs">
+            <div class="nav_item_container">
+                <a class="nav_item" title="На главную" href="index.html">
+                    <img alt="Сергей Тихонов" class="profile_pic" src="img/profile_pic.png"/>
+                </a>
+            </div>
+            <div class="nav_item_container">
+                <a class="nav_item" title="Работы" href="index.html#work">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                </a>
+            </div>
+            <div class="nav_item_container">
+                <a class="nav_item" title="Telegram" href="https://t.me/tikhonoxx" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Case study layout -->
+        <article class="design_project_article" data-name="Affordability on Uber Eats" data-mounted="true">
+            <div class="project_article_header">
+                <div class="basic_info">
+                    <h2 class="title">Flowwow</h2>
+                    <p class="subtitle">Арт-дирекшн, Продуктовый дизайн, Брендинг</p>
+                </div>
+                <p class="excerpt">
+                    Я создал более 3000 креативов<br>для социальных сетей Flowwow
+                </p>
+                <div>
+                    <div class="project_thumbnail" data-name="Flowwow" data-img-only="true">
+                        <div class="project_artwork fw_artwork" style="background: transparent; -webkit-mask-image: -webkit-radial-gradient(white, black); transform: translateZ(0);">
+                            <video src="video/fw_cover_yandex.mp4" loop="" muted="" autoplay="" playsinline="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"></video>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+            </div>
+
+            <!-- Two-column splits body layout -->
+            <div class="design_project_article_body" data-fade-in="true">
+                <!-- Sticky Left column credits (First child for correct CSS grid alignment) -->
+                <div class="credits">
+                    <div class="item">
+                        <h3>Когда</h3>
+                        <p>2023 — 2026</p>
+                    </div>
+                    <div class="item">
+                        <h3>Для</h3>
+                        <p>Flowwow</p>
+                    </div>
+                </div>
+
+                <!-- Right column content -->
+                <div class="content">
+                    <blockquote>
+                        <p>В течение года отвечал за направление Global,<br>разработав единый визуальный гайд для дизайнеров,<br>работающих с разными странами.</p>
+                    </blockquote>
+
+                    <figure class="project_article_asset">
+                        <div class="cards_fan_container">
+                            <div class="fan_row">
+                                <div class="fan_card" style="--orig-rot: -8deg; --orig-y: 4px;"><img src="img/fw_fan_1.jpg" alt="Flowwow UAE Marketing"></div>
+                                <div class="fan_card" style="--orig-rot: 0deg; --orig-y: -2px;"><img src="img/fw_fan_2.jpg" alt="Flowwow Turkey Marketing"></div>
+                                <div class="fan_card" style="--orig-rot: 8deg; --orig-y: 4px;"><img src="img/fw_fan_3.jpg" alt="Flowwow France Marketing"></div>
+                            </div>
+                            <div class="fan_row">
+                                <div class="fan_card" style="--orig-rot: -8deg; --orig-y: 4px;"><img src="img/fw_fan_4.jpg" alt="Flowwow Poland Marketing"></div>
+                                <div class="fan_card" style="--orig-rot: 0deg; --orig-y: -2px;"><img src="img/fw_fan_5.jpg" alt="Flowwow Spain Marketing"></div>
+                                <div class="fan_card" style="--orig-rot: 8deg; --orig-y: 4px;"><img src="img/fw_fan_6.jpg" alt="Flowwow UK Marketing"></div>
+                            </div>
+                        </div>
+                    </figure>
+
+                    <blockquote>
+                        <p>Систематизировав правила по цветам, символам<br>и изображению людей, я сделал создание креативов<br>быстрее для дизайнеров — и безопаснее для бренда<br>в каждой стране.</p>
+                    </blockquote>
+
+                    <!-- Global Countries Video -->
+                    <figure class="project_article_asset">
+                        <div class="video_container">
+                            <video src="video/fw_global_yandex.mp4" loop="" muted="" autoplay="" playsinline="" class="project_article_video"></video>
+                        </div>
+                    </figure>
+
+                    <blockquote>
+                        <p>Этот гайд охватил 7 рынков, а также<br>аккаунты Global с мультистрановым контентом.</p>
+                    </blockquote>
+
+                    <figure class="project_article_asset">
+                        <div class="project_artwork fw_artwork" id="fw-blue-card" style="background: #FFE9EE; border-radius: 16px;">
+                            <div class="card-stack" id="fw-card-stack">
+                                <div class="card active"><img src="img/fw_card_1.jpg" alt="Экран приложения Flowwow — карточка товара с деталями о букете цветов"></div>
+                                <div class="card next"><img src="img/fw_card_2.jpg" alt="Иллюстрация курьера Flowwow, доставляющего цветы клиенту"></div>
+                                <div class="card next-2"><img src="img/fw_card_3.jpg" alt="Фирменный баннер Flowwow с зелеными листьями растений"></div>
+                                <div class="card"><img src="img/fw_card_4.jpg" alt="Интерфейс личного кабинета и программы лояльности в приложении Flowwow"></div>
+                                <div class="card"><img src="img/fw_card_5.jpg" alt="Экран выбора цветов с фильтрами и категориями Flowwow"></div>
+                                <div class="card"><img src="img/fw_card_6.jpg" alt="Рекламная графика Flowwow с праздничной композицией и цветами"></div>
+                                <div class="card"><img src="img/fw_card_7.jpg" alt="Экран оформления заказа с интерактивной картой доставки Flowwow"></div>
+                                <div class="card"><img src="img/fw_card_8.jpg" alt="Типографический баннер со слоганом и логотипом бренда Flowwow"></div>
+                                <div class="card"><img src="img/fw_card_9.jpg" alt="Брендированный мокап подарочной коробки Flowwow с логотипом"></div>
+                                <div class="card"><img src="img/fw_card_10.jpg" alt="Приветственный экран (onboarding) с яркими иллюстрациями приложения Flowwow"></div>
+                            </div>
+                        </div>
+                    </figure>
+
+                    <blockquote>
+                        <p>Заложил основу единого стандарта, которым теперь<br>пользуется вся команда — от дизайнеров до локальных<br>маркетологов и смм-специалистов, снизив количество<br>ошибок и ускорив онбординг новых людей.</p>
+                    </blockquote>
+
+                    <a href="flowwow-creatives.html" class="gallery_btn">Посмотреть поближе</a>
+                </div>
+            </div>
+        </article>
+
+    </div>
+
+    <!-- Interactive Card Stack Carousel JS Controller -->
+    <script>
+        function initStack() {
+            const stack = document.getElementById('fw-card-stack');
+            if (stack) {
+                const cards = stack.querySelectorAll('.card');
+                let currentIndex = 0;
+                let isTransitioning = false;
+                let autoSwipeInterval = null;
+
+                function updateCardClasses() {
+                    cards.forEach((card, index) => {
+                        card.classList.remove('active', 'next', 'next-2', 'exit');
+                        
+                        // Calculate position relative to currentIndex
+                        const pos = (index - currentIndex + cards.length) % cards.length;
+                        
+                        if (pos === 0) {
+                            card.classList.add('active');
+                        } else if (pos === 1) {
+                            card.classList.add('next');
+                        } else if (pos === 2) {
+                            card.classList.add('next-2');
+                        }
+                    });
+                }
+
+                function swipeCard() {
+                    if (cards.length === 0 || isTransitioning) return;
+                    isTransitioning = true;
+
+                    const activeCard = cards[currentIndex];
+                    if (activeCard) {
+                        activeCard.classList.add('exit');
+                        activeCard.classList.remove('active');
+                    }
+
+                    setTimeout(() => {
+                        currentIndex = (currentIndex + 1) % cards.length;
+                        updateCardClasses();
+                        isTransitioning = false;
+                    }, 350); // Matches slide out transition duration (0.35s)
+                }
+
+                function startAutoSwipe() {
+                    stopAutoSwipe();
+                    autoSwipeInterval = setInterval(swipeCard, 2200); // 2.2s interval
+                }
+
+                function stopAutoSwipe() {
+                    if (autoSwipeInterval) {
+                        clearInterval(autoSwipeInterval);
+                    }
+                }
+
+                // Initialize stack carousel and start loop
+                if (cards.length > 0) {
+                    updateCardClasses();
+                    startAutoSwipe();
+
+                    // Manual swipe on click (allowed on detail page)
+                    stack.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        swipeCard();
+                        startAutoSwipe();
+                    });
+
+                    // 3D Parallax Tilt hover effect
+                    const blueCardBlock = document.getElementById('fw-blue-card');
+                    if (blueCardBlock) {
+                        blueCardBlock.addEventListener('mousemove', (e) => {
+                            const rect = blueCardBlock.getBoundingClientRect();
+                            const x = (e.clientX - rect.left) / rect.width - 0.5; // normalized -0.5 to 0.5
+                            const y = (e.clientY - rect.top) / rect.height - 0.5; // normalized -0.5 to 0.5
+
+                            // Apply rotation variables to CSS
+                            stack.style.setProperty('--rotate-x', `${-y * 16}deg`);
+                            stack.style.setProperty('--rotate-y', `${x * 16}deg`);
+                            
+                            // Pause gentle floating animation during manual interaction
+                            stack.style.animationPlayState = 'paused';
+                        });
+
+                        blueCardBlock.addEventListener('mouseleave', () => {
+                            // Reset rotation variables smoothly
+                            stack.style.setProperty('--rotate-x', '0deg');
+                            stack.style.setProperty('--rotate-y', '0deg');
+                            
+                            // Resume floating
+                            stack.style.animationPlayState = 'running';
+                        });
+                    }
+                }
+            }
+        }
+
+        // Bulletproof ready-state check to prevent initialization failure
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initStack);
+        } else {
+            initStack();
+        }
+    </script>
+</body>
+</html>

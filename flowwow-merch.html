@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Flowwow Merch | Сергей Тихонов</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-body-regular: 420 16px/1.6 var(--font-family);
+            --color-text-primary: rgba(0, 0, 0, 0.9);
+            --color-text-secondary: rgb(136, 139, 144);
+            --color-blue: #0010E5;
+            --color-bg: #FFFFFF;
+        }
+
+        /* Basic resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: var(--font-family);
+            text-rendering: geometricPrecision;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: var(--color-bg);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--color-text-primary);
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Container Layout */
+        .project_article_wrapper {
+            width: 100%;
+            padding: 80px 80px 120px;
+            max-width: 100%; /* Spreads fully to window boundaries */
+            margin: 0;
+        }
+
+        .merch_layout_container {
+            display: flex;
+            justify-content: space-between; /* Align text to far-left, grid to far-right */
+            width: 100%;
+            align-items: start;
+            gap: 40px;
+        }
+
+        .text_column {
+            position: sticky;
+            top: 80px;
+            width: 100%;
+            max-width: 360px; /* Keep text column compact */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .text_column h1 {
+            font-size: 32px;
+            font-weight: 560;
+            line-height: 1.25;
+            color: var(--color-text-primary);
+            margin-bottom: 8px;
+        }
+
+        .text_column p {
+            font-size: 16px;
+            font-weight: 420;
+            line-height: 1.6;
+            color: var(--color-text-secondary);
+        }
+
+        @media (max-width: 950px) {
+            .project_article_wrapper {
+                padding: 40px 40px 80px;
+            }
+            .merch_layout_container {
+                flex-direction: column;
+                gap: 40px;
+            }
+            .text_column {
+                position: static;
+                max-width: none;
+            }
+            .text_column h1 {
+                font-size: 28px;
+            }
+            .gallery_grid {
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .project_article_wrapper {
+                padding: 40px 20px 80px;
+            }
+        }
+
+        /* Floating Nav Tabs Dock */
+        .navigation_tabs {
+            display: inline-flex;
+            padding: 2px;
+            justify-content: center;
+            align-items: center;
+            gap: 2px;
+            position: fixed;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+
+        .navigation_tabs:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 100px;
+            background: rgba(255,255,255,.68);
+            box-shadow: 0 2px 32px 0 rgba(0,0,0,.16);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            z-index: -1;
+        }
+
+        .navigation_tabs .nav_item_container {
+            display: flex;
+        }
+
+        .navigation_tabs .nav_item {
+            display: flex;
+            width: 51px;
+            height: 51px;
+            justify-content: center;
+            align-items: center;
+            aspect-ratio: 1/1;
+            color: var(--color-text-secondary);
+            transition: background-color 0.25s, color 0.25s;
+            border-radius: 50%;
+        }
+
+        .navigation_tabs .nav_item:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            color: var(--color-text-primary);
+        }
+
+        .profile_pic {
+            height: 1.5em;
+            width: 1.5em;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Gallery Layout */
+        .gallery_grid {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            width: 100%;
+            max-width: 800px; /* Keep size exactly as it is now */
+        }
+
+        .gallery_row {
+            display: flex;
+            gap: 24px;
+            width: 100%;
+        }
+
+        .gallery_row.cols-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 24px;
+            align-items: stretch;
+        }
+
+        .gallery_column {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .gallery_column.single-item {
+            height: 100%;
+        }
+
+        .gallery_column.single-item .gallery_item {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery_column.single-item .gallery_item img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 600px) {
+            .gallery_grid {
+                gap: 16px;
+            }
+            .gallery_row.cols-2 {
+                grid-gap: 16px;
+            }
+            .gallery_column {
+                gap: 16px;
+            }
+        }
+
+        /* Gallery Item Card */
+        .gallery_item {
+            position: relative;
+            background: #FFFFFF;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            .gallery_item {
+                border-radius: 16px;
+            }
+        }
+
+        .gallery_item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+            border-color: rgba(0, 16, 229, 0.08);
+        }
+
+        .gallery_item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery_item:hover img {
+            transform: scale(1.02);
+        }
+
+        /* Stickers Interactive Container */
+        .stickers_container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            background: transparent;
+        }
+
+        @media (max-width: 600px) {
+            .stickers_container {
+                border-radius: 16px;
+            }
+        }
+
+        .stickers_container .grid_bg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .sticker_img {
+            position: absolute;
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.35s ease;
+            cursor: pointer;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+        }
+
+        /* Alternating tilt rotation on hover */
+        .sticker_img:nth-child(odd):hover {
+            transform: scale(1.06) rotate(-3deg) translateY(-4px);
+            filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.14));
+            z-index: 10;
+        }
+
+        .sticker_img:nth-child(even):hover {
+            transform: scale(1.06) rotate(3deg) translateY(-4px);
+            filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.14));
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Bottom Dock Navigation -->
+    <nav class="navigation_tabs">
+        <div class="nav_item_container">
+            <a class="nav_item" title="На главную" href="index.html">
+                <img alt="Сергей Тихонов" class="profile_pic" src="img/profile_pic.png"/>
+            </a>
+        </div>
+        <div class="nav_item_container">
+            <a class="nav_item" title="Работы" href="index.html#work">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+            </a>
+        </div>
+        <div class="nav_item_container">
+            <a class="nav_item" title="Telegram" href="https://t.me/tikhonoxx" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="project_article_wrapper">
+
+        <div class="merch_layout_container">
+            <!-- Left Text Column -->
+            <div class="text_column">
+                <h1>Мерч-капсулы<br>для сотрудников Flowwow</h1>
+                <p>Мы с командой разработали принт<br>и цветовую систему для двух мерч-капсул,<br>позволяющую бренду говорить на одном<br>визуальном языке от футболки до упаковки.</p>
+                <p>Собрав мягкие градиенты в абстрактные<br>цветочные формы, мы создали узнаваемую<br>айдентику, которая одинаково работает<br>на одежде, аксессуарах и брендированной<br>упаковке.</p>
+            </div>
+
+            <!-- Right Gallery Grid Column -->
+            <main class="gallery_grid">
+                <!-- Row 1: 2 columns -->
+                <div class="gallery_row cols-2">
+                <div class="gallery_column single-item">
+                    <div class="gallery_item">
+                        <img src="img/merch/fw_merch_1.jpg" alt="Модель в футболке Flowwow" loading="lazy" />
+                    </div>
+                </div>
+                <div class="gallery_column">
+                    <div class="gallery_item">
+                        <img src="img/merch/fw_merch_2.jpg" alt="Открытка с тюльпаном" loading="lazy" />
+                    </div>
+                    <div class="gallery_item">
+                        <img src="img/merch/fw_merch_3.jpg" alt="Фирменные брелоки Flowwow" loading="lazy" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Full width (Interactive Stickers Grid) -->
+            <div class="gallery_row full-width">
+                <div class="stickers_container">
+                    <img class="grid_bg" src="img/merch/fw_merch_4.svg" alt="Сетка бренда" />
+                    <img class="sticker_img" src="img/merch/fw_stiker_1.png?v=1" alt="Стикер 1" style="left: 6.5%; top: 9.5%; width: 28.5%;" />
+                    <img class="sticker_img" src="img/merch/fw_stiker_2.png?v=1" alt="Стикер 2" style="left: 43.5%; top: 10.5%; width: 25.0%;" />
+                    <img class="sticker_img" src="img/merch/fw_stiker_3.png?v=1" alt="Стикер 3" style="left: 75.0%; top: 7.5%; width: 20.74%;" />
+                    <img class="sticker_img" src="img/merch/fw_stiker_4.png?v=1" alt="Стикер 4" style="left: 6.5%; top: 37.0%; width: 41.47%;" />
+                    <img class="sticker_img" src="img/merch/fw_stiker_5.png?v=1" alt="Стикер 5" style="left: 62.5%; top: 42.5%; width: 29.95%;" />
+                    <img class="sticker_img" src="img/merch/fw_stiker_6.png?v=1" alt="Стикер 6" style="left: 14.5%; top: 55.5%; width: 19.59%;" />
+                    <img class="sticker_img" src="img/merch/fw_stiker_7.png?v=1" alt="Стикер 7" style="left: 39.5%; top: 53.5%; width: 19.59%;" />
+                    <img class="sticker_img" src="img/merch/fw_stiker_8.png?v=1" alt="Стикер 8" style="left: 67.0%; top: 61.5%; width: 20.74%;" />
+                    <img class="sticker_img" src="img/merch/fw_stiker_9.png?v=1" alt="Стикер 9" style="left: 7.5%; top: 78.5%; width: 23.04%;" />
+                    <img class="sticker_img" src="img/merch/fw_stiker_10.png?v=1" alt="Стикер 10" style="left: 39.5%; top: 78.0%; width: 26.50%;" />
+                    <img class="sticker_img" src="img/merch/fw_stiker_11.png?v=1" alt="Стикер 11" style="left: 75.5%; top: 78.0%; width: 19.59%;" />
+                </div>
+            </div>
+
+            <!-- Row 3: 2 columns -->
+            <div class="gallery_row cols-2">
+                <div class="gallery_column single-item">
+                    <div class="gallery_item">
+                        <img src="img/merch/fw_merch_5.jpg" alt="Футболка с фирменным логотипом" loading="lazy" />
+                    </div>
+                </div>
+                <div class="gallery_column single-item">
+                    <div class="gallery_item">
+                        <img src="img/merch/fw_merch_6.jpg" alt="Фирменное худи Flowwow" loading="lazy" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 4: Full width -->
+            <div class="gallery_row full-width">
+                <div class="gallery_item">
+                    <img src="img/merch/fw_merch_7.jpg" alt="Фирменная упаковка Flowwow" loading="lazy" />
+                </div>
+            </div>
+        </main>
+    </div> <!-- Close .merch_layout_container -->
+</div> <!-- Close .project_article_wrapper -->
+
+</body>
+</html>
