@@ -131,12 +131,18 @@ body {
     overflow: hidden;
     text-decoration: none;
     color: unset;
-    transform: translateZ(0);
+    background: transparent;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .project_thumbnail:hover {
-    transform: scale(1.02);
+    transform: scale(1.02) translate3d(0, 0, 0);
 }
 
 .project_artwork {
@@ -145,6 +151,13 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    background: transparent;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .project_artwork img, 
@@ -153,6 +166,10 @@ body {
     height: 100%;
     object-fit: cover;
     display: block;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 /* Project Info Inside Card */
