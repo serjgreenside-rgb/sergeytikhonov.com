@@ -215,6 +215,16 @@ body {
     filter: none;
 }
 
+/* Theme: No Shadow (removes bottom gradient overlay and text drop-shadow) */
+.project_thumbnail.no-shadow .progressive_blur {
+    display: none;
+}
+
+.project_thumbnail.no-shadow .project_info .title,
+.project_thumbnail.no-shadow .project_info .subtitle {
+    filter: none;
+}
+
 /* Mobile specific metadata, hidden on desktop */
 .mobile_card_info {
     display: none;
