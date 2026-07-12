@@ -548,44 +548,32 @@ body {
     filter: none;
 }
 
-/* --- Style 1: Royal Blue Glass (Active by default) --- */
+/* --- Style 1: Royal Blue Solid (Active by default, matched to Tailwind reference) --- */
 .btn-telegram-blue-glass {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 100%; /* Stretch to full width of column block */
-    background: rgba(0, 16, 229, 0.88); /* Royal Blue with glass opacity */
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1.5px solid rgba(255, 255, 255, 0.2);
-    border-radius: 9999px;
-    padding: 16px 36px;
+    height: 48px; /* Matched to h-[48px] */
+    background-color: #2563eb; /* Matched to bg-blue-600 */
+    border: 1px solid #1e40af; /* Matched to border-blue-800 */
+    border-radius: 9999px; /* Matched to rounded-full */
     font-size: 16px;
-    font-weight: 550;
-    color: #FFFFFF;
+    font-weight: 500; /* Matched to font-medium */
+    color: #FFFFFF; /* Matched to text-white */
     text-decoration: none;
-    box-shadow: 
-        0 12px 30px rgba(0, 16, 229, 0.2), 
-        inset 0 2px 4px rgba(255, 255, 255, 0.3), 
-        inset 0 -2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: inset 0 1.5px 0 0 rgba(255, 255, 255, 0.20); /* Matched to shadow-[0_1.50px_0_0_rgba(255,255,255,0.20)_inset] */
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
 }
 
 .btn-telegram-blue-glass:hover {
-    background: rgba(0, 16, 229, 0.96);
-    box-shadow: 
-        0 16px 36px rgba(0, 16, 229, 0.35), 
-        inset 0 2px 4px rgba(255, 255, 255, 0.4), 
-        inset 0 -2px 4px rgba(0, 0, 0, 0.1);
-    transform: translateY(-1px);
+    background-color: #1d4ed8; /* Matched to hover:bg-blue-700 */
+    border-color: #1e40af;
     color: #FFFFFF;
 }
 
 .btn-telegram-blue-glass:active {
-    transform: translateY(1px);
-    box-shadow: 
-        0 8px 20px rgba(0, 16, 229, 0.15), 
-        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    transform: scale(0.985); /* Clean active press click effect */
 }
 
 /* --- Style 2: Frosted Blue Tint (Subtle and clean) --- */
