@@ -230,12 +230,11 @@ body {
 .view-more-grid-button {
     width: 100%;
     max-width: calc(100vh - 200px);
-    aspect-ratio: 1;
     display: flex;
     flex-flow: column;
     align-items: center;
-    justify-content: center;
     position: relative;
+    padding: 60px 0 40px; /* Natural padding instead of aspect-ratio: 1 */
 }
 
 .view-more-grid-button .center_content {
@@ -253,11 +252,8 @@ body {
 }
 
 .view-more-grid-button .footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 24px;
+    margin-top: 80px; /* Natural spacing below button */
+    width: 100%;
     text-align: center;
 }
 
@@ -551,15 +547,92 @@ body {
     filter: none;
 }
 
-/* Glassy/Neomorphic Telegram Button (from Pinterest reference) */
-.btn-telegram-glass {
+/* --- Style 1: Royal Blue Glass (Active by default) --- */
+.btn-telegram-blue-glass {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(0, 16, 229, 0.88); /* Royal Blue with glass opacity */
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1.5px solid rgba(255, 255, 255, 0.65);
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+    padding: 16px 36px;
+    font-size: 16px;
+    font-weight: 550;
+    color: #FFFFFF;
+    text-decoration: none;
+    box-shadow: 
+        0 12px 30px rgba(0, 16, 229, 0.2), 
+        inset 0 2px 4px rgba(255, 255, 255, 0.3), 
+        inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-telegram-blue-glass:hover {
+    background: rgba(0, 16, 229, 0.96);
+    box-shadow: 
+        0 16px 36px rgba(0, 16, 229, 0.35), 
+        inset 0 2px 4px rgba(255, 255, 255, 0.4), 
+        inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+    color: #FFFFFF;
+}
+
+.btn-telegram-blue-glass:active {
+    transform: translateY(1px);
+    box-shadow: 
+        0 8px 20px rgba(0, 16, 229, 0.15), 
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+/* --- Style 2: Frosted Blue Tint (Subtle and clean) --- */
+.btn-telegram-blue-tint {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 16, 229, 0.05); /* Very light blue background */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1.5px solid rgba(0, 16, 229, 0.15);
+    border-radius: 9999px;
+    padding: 16px 36px;
+    font-size: 16px;
+    font-weight: 550;
+    color: #0010E5;
+    text-decoration: none;
+    box-shadow: 
+        0 12px 30px rgba(0, 16, 229, 0.02), 
+        inset 0 2px 4px rgba(255, 255, 255, 0.8), 
+        inset 0 -2px 4px rgba(0, 0, 0, 0.01);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-telegram-blue-tint:hover {
+    background: rgba(0, 16, 229, 0.1);
+    border-color: rgba(0, 16, 229, 0.25);
+    box-shadow: 
+        0 16px 36px rgba(0, 16, 229, 0.05), 
+        inset 0 2px 4px rgba(255, 255, 255, 0.9), 
+        inset 0 -2px 4px rgba(0, 0, 0, 0.01);
+    transform: translateY(-1px);
+    color: #0010E5;
+}
+
+.btn-telegram-blue-tint:active {
+    transform: translateY(1px);
+    box-shadow: 
+        0 8px 20px rgba(0, 16, 229, 0.01), 
+        inset 0 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+/* --- Style 3: Neomorphic Soft Inset (Light 3D look) --- */
+.btn-telegram-neomorphic {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #FBFBFB;
+    border: 1px solid rgba(0, 0, 0, 0.03);
     border-radius: 9999px;
     padding: 16px 36px;
     font-size: 16px;
@@ -567,25 +640,21 @@ body {
     color: #000000;
     text-decoration: none;
     box-shadow: 
-        0 12px 30px rgba(0, 0, 0, 0.05), 
-        inset 0 2px 4px rgba(255, 255, 255, 0.8), 
-        inset 0 -2px 4px rgba(0, 0, 0, 0.02);
+        6px 6px 16px rgba(0, 0, 0, 0.04), 
+        -6px -6px 16px #FFFFFF, 
+        inset 1px 1px 0 rgba(255, 255, 255, 0.8);
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.btn-telegram-glass:hover {
-    background: rgba(255, 255, 255, 0.6);
+.btn-telegram-neomorphic:hover {
     box-shadow: 
-        0 16px 36px rgba(0, 0, 0, 0.07), 
-        inset 0 2px 4px rgba(255, 255, 255, 0.9), 
-        inset 0 -2px 4px rgba(0, 0, 0, 0.02);
-    transform: translateY(-1px);
+        inset 3px 3px 6px rgba(0, 0, 0, 0.03), 
+        inset -3px -3px 6px #FFFFFF;
     color: #000000;
 }
 
-.btn-telegram-glass:active {
-    transform: translateY(1px);
+.btn-telegram-neomorphic:active {
     box-shadow: 
-        0 8px 20px rgba(0, 0, 0, 0.04), 
-        inset 0 2px 4px rgba(255, 255, 255, 0.8);
+        inset 4px 4px 8px rgba(0, 0, 0, 0.04), 
+        inset -4px -4px 8px #FFFFFF;
 }
