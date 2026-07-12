@@ -108,8 +108,6 @@ body {
     flex-flow: column;
     align-items: flex-end;
     overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    scroll-padding: 80px;
     gap: 40px;
     scrollbar-width: none; /* Hide Firefox scrollbar */
 }
@@ -121,8 +119,6 @@ body {
 .featured_projects .project {
     width: 100%;
     max-width: calc(100vh - 200px);
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
 }
 
 /* Project Thumbnail Link */
@@ -235,8 +231,6 @@ body {
     width: 100%;
     max-width: calc(100vh - 200px);
     aspect-ratio: 1;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
     display: flex;
     flex-flow: column;
     align-items: center;
