@@ -49,6 +49,31 @@
             margin: 0;
         }
 
+        /* Back Button Navigation */
+        .back_nav {
+            margin-bottom: 24px;
+        }
+
+        .back_btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-text-secondary);
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .back_btn:hover {
+            color: #0010E5; /* Royal blue */
+            transform: translateX(-4px);
+        }
+
+        .back_btn svg {
+            transition: stroke 0.2s ease;
+        }
+
         a {
             color: inherit;
             text-decoration: none;
@@ -788,6 +813,17 @@
 
         <!-- Main Case study layout -->
         <article class="design_project_article" data-name="Affordability on Uber Eats" data-mounted="true">
+            <!-- Back Button -->
+            <div class="back_nav">
+                <a href="index.html" class="back_btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Вернуться на главную
+                </a>
+            </div>
+
             <div class="project_article_header">
                 <div class="basic_info">
                     <h2 class="title">Flowwow</h2>
