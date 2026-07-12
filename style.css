@@ -232,7 +232,7 @@ body {
     max-width: calc(100vh - 200px);
     display: flex;
     flex-flow: column;
-    align-items: center;
+    align-items: stretch; /* Stretch content to full width */
     position: relative;
     padding: 60px 0 40px; /* Natural padding instead of aspect-ratio: 1 */
 }
@@ -240,7 +240,8 @@ body {
 .view-more-grid-button .center_content {
     display: flex;
     flex-flow: column;
-    align-items: center;
+    align-items: stretch; /* Stretch button to full width */
+    width: 100%;
 }
 
 .view-more-grid-button .btn-secondary {
@@ -552,6 +553,7 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 100%; /* Stretch to full width of column block */
     background: rgba(0, 16, 229, 0.88); /* Royal Blue with glass opacity */
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -591,6 +593,7 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 100%; /* Stretch to full width of column block */
     background: rgba(0, 16, 229, 0.05); /* Very light blue background */
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -631,6 +634,7 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 100%; /* Stretch to full width of column block */
     background: #FBFBFB;
     border: 1px solid rgba(0, 0, 0, 0.03);
     border-radius: 9999px;
