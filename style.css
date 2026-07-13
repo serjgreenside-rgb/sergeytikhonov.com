@@ -68,6 +68,18 @@ body {
     letter-spacing: -0.02em;
 }
 
+.nowrap-line {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+@media (max-width: 850px) {
+    .nowrap-line {
+        display: inline;
+        white-space: normal;
+    }
+}
+
 /* Left Navigation Buttons */
 .sidebar .navigation {
     display: flex;
