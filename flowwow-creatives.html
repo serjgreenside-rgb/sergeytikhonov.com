@@ -41,12 +41,19 @@
 
         /* Container Layout */
         .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 60px 40px 120px;
+            width: 100%;
+            padding: 80px 40px 120px; /* Aligns left edge exactly to 40px */
+            max-width: 100%;
+            margin: 0;
         }
 
         @media (max-width: 850px) {
+            .container {
+                padding: 40px 40px 80px;
+            }
+        }
+
+        @media (max-width: 600px) {
             .container {
                 padding: 40px 20px 80px;
             }
