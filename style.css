@@ -214,32 +214,6 @@ body {
     opacity: 1;
 }
 
-/* Caption Text Overlay inside Rectangle */
-.rect-text {
-    position: absolute;
-    bottom: 20px;
-    left: 24px;
-    z-index: 3;
-    color: #FFFFFF;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    pointer-events: none;
-    text-align: left;
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.25));
-}
-
-.rect-year {
-    font-size: 13px;
-    font-weight: 500;
-    opacity: 0.95;
-}
-
-.rect-title {
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-}
 
 .project_artwork {
     position: absolute;
