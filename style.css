@@ -315,6 +315,11 @@ body {
     filter: none;
 }
 
+/* Line break helper only visible on mobile */
+.mobile-br {
+    display: none;
+}
+
 /* Mobile specific metadata, hidden on desktop */
 .mobile_card_info {
     display: none;
@@ -505,6 +510,11 @@ body {
     }
     .rectangle .default-img {
         opacity: 0;
+    }
+
+    /* Force line break for titles on mobile */
+    .mobile-br {
+        display: block;
     }
 
     .view-more-grid-button {
