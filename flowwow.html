@@ -150,11 +150,11 @@
         }
 
         /* Article Container & Layout */
-        .design_project_article {
-            margin: 0 auto;
-            padding: 80px 40px 120px;
-            max-width: 1600px;
-            display: block;
+        .project_article_wrapper {
+            width: 100%;
+            padding: 80px 40px 120px; /* Aligns left edge exactly to 40px like the main page sidebar! */
+            max-width: 100%; /* Spreads fully to window boundaries */
+            margin: 0;
             opacity: 0;
             animation: projectArticleSlideUp 1s cubic-bezier(.28,.11,.32,1) .2s forwards;
         }
@@ -172,113 +172,100 @@
             }
         }
 
-        @media(max-width:850px){
-            .design_project_article {
-                padding: 80px 20px;
+        @media (max-width: 950px) {
+            .project_article_wrapper {
+                padding: 40px 40px 80px;
             }
         }
 
-        .design_project_article > :not(:first-child) {
-            padding-top: 40px;
+        @media (max-width: 600px) {
+            .project_article_wrapper {
+                padding: 40px 20px 80px;
+            }
         }
 
-        /* Article Header */
-        .project_article_header {
+        .merch_layout_container {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* Align text to far-left, grid to far-right */
             width: 100%;
-            max-width: 100%;
-            margin: 0 auto;
-            align-items: center; /* Center content vertically */
+            align-items: start;
             gap: 80px;
         }
 
-        @media(max-width:850px){
-            .project_article_header {
-                display: grid;
-                grid-template-columns: 1fr;
-                grid-gap: 32px;
+        @media (max-width: 950px) {
+            .merch_layout_container {
+                flex-direction: column;
+                gap: 40px;
             }
         }
 
-        .header_left_col {
+        .text_column {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 80px;
+            width: 100%;
+            max-width: 360px; /* Keep text column compact and aligned */
             display: flex;
             flex-direction: column;
-            gap: 40px; /* Space between title-subtitle block and excerpt */
-            width: 100%;
-            max-width: 440px;
+            gap: 24px;
         }
 
-        @media(max-width:850px){
-            .header_left_col {
-                display: contents; /* Allows children to be reordered in the parent grid */
-            }
-        }
-
-        .header_right_col {
-            width: 100%;
-            max-width: 600px;
-        }
-
-        @media(max-width:850px){
-            .header_right_col {
-                order: 2;
+        @media (max-width: 950px) {
+            .text_column {
+                position: static;
                 max-width: none;
             }
         }
 
-        .project_article_header .basic_info {
-            width: 100%;
-        }
-
-        @media(max-width:850px){
-            .project_article_header .basic_info {
-                order: 1;
-            }
-        }
-
-        .project_article_header .basic_info .title {
-            font: var(--font-title-medium);
+        .text_column h1 {
+            font-size: 40px;
+            font-weight: 700;
+            line-height: 1.15;
             color: var(--color-text-primary);
             letter-spacing: -.02em;
-        }
-
-        .project_article_header .basic_info .subtitle {
-            font: var(--font-body-regular);
-            color: var(--color-text-secondary);
-            margin: 8px 0 0;
-            padding: 0;
-        }
-
-        .project_article_header .excerpt {
-            width: 100%;
-            font: var(--font-heading-regular);
-            color: var(--color-text-primary);
-            letter-spacing: -.03em;
             margin: 0;
         }
 
-        @media(max-width:850px){
-            .project_article_header .excerpt {
-                order: 3;
+        @media (max-width: 950px) {
+            .text_column h1 {
+                font-size: 32px;
             }
         }
 
-        .project_article_header hr {
-            grid-column: 1/-1;
-            width: 100%;
-            height: 1px;
-            background: #e7e8e9;
-            border: none;
-            outline: none;
-            margin: 20px 0 0;
-            display: none;
+        .text_column p {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.6;
+            color: var(--color-text-secondary);
+            margin: 0;
         }
 
-        @media(max-width:850px){
-            .project_article_header hr {
-                display: block;
-                order: 4;
+        .gallery_grid {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+            width: 100%;
+            max-width: 800px; /* Matches standard artwork width */
+        }
+
+        @media (max-width: 950px) {
+            .gallery_grid {
+                max-width: none;
+                gap: 32px;
+            }
+        }
+
+        .gallery_item {
+            position: relative;
+            background: #FFE9EE;
+            border-radius: 24px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        @media (max-width: 950px) {
+            .gallery_item {
+                border-radius: 16px;
             }
         }
 
@@ -415,7 +402,7 @@
         }
 
         /* Overrides for card-stack when placed in the right content column */
-        .content .project_artwork {
+        .gallery_grid .project_artwork {
             position: relative;
             display: block;
             margin: 0;
@@ -427,29 +414,29 @@
             --rotate-y: 0deg;
         }
 
-        .content .card-stack .card {
+        .gallery_grid .card-stack .card {
             width: 300px;
             height: 375px;
             border-radius: 14px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
         }
-        .content .card-stack .card.active {
+        .gallery_grid .card-stack .card.active {
             transform: scale(1) translateY(0) rotate(0deg) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg)) translateZ(20px);
             box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
         }
-        .content .card-stack .card.next {
+        .gallery_grid .card-stack .card.next {
             transform: scale(0.93) translateY(20px) rotate(-1.5deg) rotateX(calc(var(--rotate-x, 0deg) * 0.7)) rotateY(calc(var(--rotate-y, 0deg) * 0.7)) translateZ(10px);
             opacity: 0.9;
         }
-        .content .card-stack .card.next-2 {
+        .gallery_grid .card-stack .card.next-2 {
             transform: scale(0.86) translateY(40px) rotate(1.5deg) rotateX(calc(var(--rotate-x, 0deg) * 0.4)) rotateY(calc(var(--rotate-y, 0deg) * 0.4)) translateZ(0px);
             opacity: 0.8;
         }
-        .content .card-stack .card:not(.active):not(.next):not(.next-2):not(.exit) {
+        .gallery_grid .card-stack .card:not(.active):not(.next):not(.next-2):not(.exit) {
             transform: scale(0.8) translateY(60px) translateZ(-20px);
             opacity: 0;
         }
-        .content .card-stack .card.exit {
+        .gallery_grid .card-stack .card.exit {
             transform: translate(160%, -10px) rotate(15deg) translateZ(50px);
             opacity: 0;
         }
@@ -822,105 +809,95 @@
         </nav>
 
         <!-- Main Case study layout -->
-        <article class="design_project_article" data-name="Affordability on Uber Eats" data-mounted="true">
-            <div class="project_article_header">
-                <!-- Left Column -->
-                <div class="header_left_col">
-                    <div class="basic_info">
-                        <h2 class="title">Flowwow</h2>
-                        <p class="subtitle">Арт-дирекшн, Продуктовый дизайн, Брендинг</p>
-                    </div>
-                    <p class="excerpt">
+        <div class="project_article_wrapper">
+            <div class="merch_layout_container">
+                <!-- Left Text & Info Column -->
+                <div class="text_column">
+                    <h1>Flowwow</h1>
+                    <p style="color: var(--color-text-secondary); font-weight: 500; margin-top: -10px; margin-bottom: 20px;">
+                        Арт-дирекшн, Продуктовый дизайн, Брендинг
+                    </p>
+                    <p style="font-size: 20px; font-weight: 500; line-height: 1.4; color: var(--color-text-primary); margin-bottom: 40px;">
                         Создано более 3000 креативов<br>для социальных сетей Flowwow
                     </p>
+                    
+                    <div class="credits" style="display: flex; gap: 40px; margin-top: auto; padding-top: 40px;">
+                        <div class="item">
+                            <h3 style="color: var(--color-text-secondary); font-size: 14px; font-weight: 500; margin-bottom: 4px;">Когда</h3>
+                            <p style="font-size: 14px; color: var(--color-text-primary); margin: 0;">2023 — 2026</p>
+                        </div>
+                        <div class="item">
+                            <h3 style="color: var(--color-text-secondary); font-size: 14px; font-weight: 500; margin-bottom: 4px;">Для</h3>
+                            <p style="font-size: 14px; color: var(--color-text-primary); margin: 0;">Flowwow</p>
+                        </div>
+                    </div>
                 </div>
-                
-                <!-- Right Column (Square cover video) -->
-                <div class="header_right_col">
-                    <div class="project_thumbnail" data-name="Flowwow" data-img-only="true">
-                        <div class="project_artwork fw_artwork" style="background: transparent; -webkit-mask-image: -webkit-radial-gradient(white, black); transform: translateZ(0);">
+
+                <!-- Right Gallery & Content Column -->
+                <main class="gallery_grid">
+                    <!-- Square cover video -->
+                    <div class="gallery_item">
+                        <div class="project_artwork fw_artwork" style="background: transparent; -webkit-mask-image: -webkit-radial-gradient(white, black); transform: translateZ(0); padding-top: 100%; position: relative;">
                             <video src="video/fw_cover_yandex.mp4" loop="" muted="" autoplay="" playsinline="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"></video>
                         </div>
                     </div>
-                </div>
-                <hr/>
-            </div>
 
-            <!-- Two-column splits body layout -->
-            <div class="design_project_article_body" data-fade-in="true">
-                <!-- Sticky Left column credits (First child for correct CSS grid alignment) -->
-                <div class="credits">
-                    <div class="item">
-                        <h3>Когда</h3>
-                        <p>2023 — 2026</p>
-                    </div>
-                    <div class="item">
-                        <h3>Для</h3>
-                        <p>Flowwow</p>
-                    </div>
-                </div>
-
-                <!-- Right column content -->
-                <div class="content">
-                    <blockquote>
-                        <p>В течение года отвечал за направление Global,<br>разработав единый визуальный гайд для дизайнеров,<br>работающих с разными странами.</p>
+                    <!-- Rest of the content -->
+                    <blockquote style="font: var(--font-heading-regular); letter-spacing: -.03em; margin: 24px 0 0; padding: 20px 0; font-style: italic;">
+                        В течение года отвечал за направление Global,<br>разработав единый визуальный гайд для дизайнеров,<br>работающих с разными странами.
                     </blockquote>
 
-                    <figure class="project_article_asset">
-                        <div class="cards_fan_container">
-                            <div class="fan_row">
-                                <div class="fan_card" style="--orig-rot: -8deg; --orig-y: 4px;"><img src="img/fw_fan_1.jpg" alt="Flowwow UAE Marketing"></div>
-                                <div class="fan_card" style="--orig-rot: 0deg; --orig-y: -2px;"><img src="img/fw_fan_2.jpg" alt="Flowwow Turkey Marketing"></div>
-                                <div class="fan_card" style="--orig-rot: 8deg; --orig-y: 4px;"><img src="img/fw_fan_3.jpg" alt="Flowwow France Marketing"></div>
-                            </div>
-                            <div class="fan_row">
-                                <div class="fan_card" style="--orig-rot: -8deg; --orig-y: 4px;"><img src="img/fw_fan_4.jpg" alt="Flowwow Poland Marketing"></div>
-                                <div class="fan_card" style="--orig-rot: 0deg; --orig-y: -2px;"><img src="img/fw_fan_5.jpg" alt="Flowwow Spain Marketing"></div>
-                                <div class="fan_card" style="--orig-rot: 8deg; --orig-y: 4px;"><img src="img/fw_fan_6.jpg" alt="Flowwow UK Marketing"></div>
-                            </div>
+                    <!-- Fan-out card list -->
+                    <div class="cards_fan_container" style="padding: 20px 0;">
+                        <div class="fan_row">
+                            <div class="fan_card" style="--orig-rot: -8deg; --orig-y: 4px;"><img src="img/fw_fan_1.jpg" alt="Flowwow UAE Marketing"></div>
+                            <div class="fan_card" style="--orig-rot: 0deg; --orig-y: -2px;"><img src="img/fw_fan_2.jpg" alt="Flowwow Turkey Marketing"></div>
+                            <div class="fan_card" style="--orig-rot: 8deg; --orig-y: 4px;"><img src="img/fw_fan_3.jpg" alt="Flowwow France Marketing"></div>
                         </div>
-                    </figure>
+                        <div class="fan_row">
+                            <div class="fan_card" style="--orig-rot: -8deg; --orig-y: 4px;"><img src="img/fw_fan_4.jpg" alt="Flowwow Poland Marketing"></div>
+                            <div class="fan_card" style="--orig-rot: 0deg; --orig-y: -2px;"><img src="img/fw_fan_5.jpg" alt="Flowwow Spain Marketing"></div>
+                            <div class="fan_card" style="--orig-rot: 8deg; --orig-y: 4px;"><img src="img/fw_fan_6.jpg" alt="Flowwow UK Marketing"></div>
+                        </div>
+                    </div>
 
-                    <blockquote>
-                        <p>Систематизировав правила по цветам, символам<br>и изображению людей, я сделал создание креативов<br>быстрее для дизайнеров — и безопаснее для бренда<br>в каждой стране.</p>
+                    <blockquote style="font: var(--font-heading-regular); letter-spacing: -.03em; margin: 24px 0 0; padding: 20px 0; font-style: italic;">
+                        Систематизировав правила по цветам, символам<br>и изображению людей, я сделал создание креативов<br>быстрее для дизайнеров — и безопаснее для бренда<br>в каждой стране.
                     </blockquote>
 
                     <!-- Global Countries Video -->
-                    <figure class="project_article_asset">
-                        <div class="video_container">
-                            <video src="video/fw_global_yandex.mp4" loop="" muted="" autoplay="" playsinline="" class="project_article_video"></video>
-                        </div>
-                    </figure>
+                    <div class="video_container" style="border-radius: 16px; overflow: hidden; background: #000; width: 100%; display: block; margin: 20px 0;">
+                        <video src="video/fw_global_yandex.mp4" loop="" muted="" autoplay="" playsinline="" style="width: 100%; display: block;"></video>
+                    </div>
 
-                    <blockquote>
-                        <p>Этот гайд охватил 7 рынков, а также<br>аккаунты Global с мультистрановым контентом.</p>
+                    <blockquote style="font: var(--font-heading-regular); letter-spacing: -.03em; margin: 24px 0 0; padding: 20px 0; font-style: italic;">
+                        Этот гайд охватил 7 рынков, а также<br>аккаунты Global с мультистрановым контентом.
                     </blockquote>
 
-                    <figure class="project_article_asset">
-                        <div class="project_artwork fw_artwork" id="fw-blue-card" style="background: #FFE9EE; border-radius: 16px;">
-                            <div class="card-stack" id="fw-card-stack">
-                                <div class="card active"><img src="img/fw_card_1.jpg" alt="Экран приложения Flowwow — карточка товара с деталями о букете цветов"></div>
-                                <div class="card next"><img src="img/fw_card_2.jpg" alt="Иллюстрация курьера Flowwow, доставляющего цветы клиенту"></div>
-                                <div class="card next-2"><img src="img/fw_card_3.jpg" alt="Фирменный баннер Flowwow с зелеными листьями растений"></div>
-                                <div class="card"><img src="img/fw_card_4.jpg" alt="Интерфейс личного кабинета и программы лояльности в приложении Flowwow"></div>
-                                <div class="card"><img src="img/fw_card_5.jpg" alt="Экран выбора цветов с фильтрами и категориями Flowwow"></div>
-                                <div class="card"><img src="img/fw_card_6.jpg" alt="Рекламная графика Flowwow с праздничной композицией и цветами"></div>
-                                <div class="card"><img src="img/fw_card_7.jpg" alt="Экран оформления заказа с интерактивной картой доставки Flowwow"></div>
-                                <div class="card"><img src="img/fw_card_8.jpg" alt="Типографический баннер со слоганом и логотипом бренда Flowwow"></div>
-                                <div class="card"><img src="img/fw_card_9.jpg" alt="Брендированный мокап подарочной коробки Flowwow с логотипом"></div>
-                                <div class="card"><img src="img/fw_card_10.jpg" alt="Приветственный экран (onboarding) с яркими иллюстрациями приложения Flowwow"></div>
-                            </div>
+                    <!-- Card stack carousel -->
+                    <div class="project_artwork fw_artwork" id="fw-blue-card" style="background: #FFE9EE; border-radius: 16px; position: relative; padding-top: 100%; overflow: hidden; margin: 20px 0;">
+                        <div class="card-stack" id="fw-card-stack">
+                            <div class="card active"><img src="img/fw_card_1.jpg" alt="Экран приложения Flowwow — карточка товара с деталями о букете цветов"></div>
+                            <div class="card next"><img src="img/fw_card_2.jpg" alt="Иллюстрация курьера Flowwow, доставляющего цветы клиенту"></div>
+                            <div class="card next-2"><img src="img/fw_card_3.jpg" alt="Фирменный баннер Flowwow с зелеными листьями растений"></div>
+                            <div class="card"><img src="img/fw_card_4.jpg" alt="Интерфейс личного кабинета и программы лояльности в приложении Flowwow"></div>
+                            <div class="card"><img src="img/fw_card_5.jpg" alt="Экран выбора цветов с фильтрами и категориями Flowwow"></div>
+                            <div class="card"><img src="img/fw_card_6.jpg" alt="Рекламная графика Flowwow с праздничной композицией и цветами"></div>
+                            <div class="card"><img src="img/fw_card_7.jpg" alt="Экран оформления заказа с интерактивной картой доставки Flowwow"></div>
+                            <div class="card"><img src="img/fw_card_8.jpg" alt="Типографический баннер со слоганом и логотипом бренда Flowwow"></div>
+                            <div class="card"><img src="img/fw_card_9.jpg" alt="Брендированный мокап подарочной коробки Flowwow с логотипом"></div>
+                            <div class="card"><img src="img/fw_card_10.jpg" alt="Приветственный экран (onboarding) с яркими иллюстрациями приложения Flowwow"></div>
                         </div>
-                    </figure>
+                    </div>
 
-                    <blockquote>
-                        <p>Заложил основу единого стандарта, которым теперь<br>пользуется вся команда — от дизайнеров до локальных<br>маркетологов и смм-специалистов, снизив количество<br>ошибок и ускорив онбординг новых людей.</p>
+                    <blockquote style="font: var(--font-heading-regular); letter-spacing: -.03em; margin: 24px 0 0; padding: 20px 0; font-style: italic;">
+                        Заложил основу единого стандарта, которым теперь<br>пользуется вся команда — от дизайнеров до локальных<br>маркетологов и смм-специалистов, снизив количество<br>ошибок и ускорив онбординг новых людей.
                     </blockquote>
 
-                    <a href="flowwow-creatives.html" class="gallery_btn">Посмотреть поближе</a>
-                </div>
+                    <a href="flowwow-creatives.html" class="gallery_btn" style="margin-top: 24px;">Посмотреть поближе</a>
+                </main>
             </div>
-        </article>
+        </div>
 
     </div>
 
