@@ -476,7 +476,7 @@
         .fan_row:last-child {
             position: relative;
             z-index: 2;
-            margin-top: -55px; /* Overlap vertically */
+            margin-top: -82px; /* Overlap vertically scaled for 1.5x cards */
         }
 
         /* Lift the entire row's z-index context when hovered so its cards render on top of the other row */
@@ -486,14 +486,14 @@
 
         .fan_card {
             position: relative;
-            width: 170px;
-            height: 212px;
-            border-radius: 14px;
+            width: 255px;
+            height: 318px;
+            border-radius: 20px;
             overflow: hidden;
             background: #ffffff;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
             border: 2px solid #ffffff;
-            margin-left: -32px; /* Overlap effect */
+            margin-left: -48px; /* Overlap effect */
             flex-shrink: 0;
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
                         opacity 0.3s ease, 
