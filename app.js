@@ -79,5 +79,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize state
     updateActiveTab();
 
-    // Flowwow project card is now presented using a responsive auto-playing video element
+    // CV Modal functionality
+    const cvBtn = document.getElementById('cv-btn');
+    const cvModal = document.getElementById('cv-modal');
+    if (cvBtn && cvModal) {
+        const closeCvModal = document.getElementById('close-cv-modal');
+        const modalOverlay = cvModal.querySelector('.modal_overlay');
+
+        const showModal = (e) => {
+            e.preventDefault();
+            cvModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const hideModal = () => {
+            cvModal.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        cvBtn.addEventListener('click', showModal);
+        closeCvModal.addEventListener('click', hideModal);
+        modalOverlay.addEventListener('click', hideModal);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && cvModal.classList.contains('active')) {
+                hideModal();
+            }
+        });
+    }
 });
