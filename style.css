@@ -185,7 +185,7 @@ body {
 }
 
 .rect-3 {
-    background-color: #10B981; /* Emerald green */
+    background-color: transparent;
 }
 
 /* Image Hover & Transition inside Rectangle */
@@ -285,16 +285,19 @@ body {
 }
 
 /* Theme: Dark Text (for light background projects like AI) */
-.project_thumbnail.theme-dark-text .progressive_blur {
+.project_thumbnail.theme-dark-text .progressive_blur,
+.rectangle.theme-dark-text .progressive_blur {
     display: none;
 }
 
-.project_thumbnail.theme-dark-text .project_info .title {
+.project_thumbnail.theme-dark-text .project_info .title,
+.rectangle.theme-dark-text .project_info .title {
     color: #000000;
     filter: none;
 }
 
-.project_thumbnail.theme-dark-text .project_info .subtitle {
+.project_thumbnail.theme-dark-text .project_info .subtitle,
+.rectangle.theme-dark-text .project_info .subtitle {
     color: rgba(0, 0, 0, 0.6);
     filter: none;
 }
