@@ -299,12 +299,15 @@ body {
 }
 
 /* Theme: No Shadow (removes bottom gradient overlay and text drop-shadow) */
-.project_thumbnail.no-shadow .progressive_blur {
+.project_thumbnail.no-shadow .progressive_blur,
+.rectangle.no-shadow .progressive_blur {
     display: none;
 }
 
 .project_thumbnail.no-shadow .project_info .title,
-.project_thumbnail.no-shadow .project_info .subtitle {
+.project_thumbnail.no-shadow .project_info .subtitle,
+.rectangle.no-shadow .project_info .title,
+.rectangle.no-shadow .project_info .subtitle {
     filter: none;
 }
 
