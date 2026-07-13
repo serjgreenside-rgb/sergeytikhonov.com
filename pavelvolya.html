@@ -12,78 +12,30 @@
     <style>
         :root {
             --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            --color-text-primary: rgba(0, 0, 0, 0.9);
             --color-text-secondary: rgb(136, 139, 144);
-            --color-blue: #0010E5;
-            --color-bg: #FFFFFF;
+            --color-text-primary: rgba(0, 0, 0, 0.9);
         }
 
-        /* Basic resets */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Hide scrollbars for body, let iframe scroll */
             font-family: var(--font-family);
-            text-rendering: geometricPrecision;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            background-color: var(--color-bg);
-            scroll-behavior: smooth;
+            background-color: #FFFFFF;
         }
 
-        body {
-            color: var(--color-text-primary);
-            padding: 0;
-            margin: 0;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        /* Container Layout */
-        .project_article_wrapper {
+        /* Fullscreen Iframe */
+        .site-frame {
             width: 100%;
-            padding: 80px 80px 120px;
-            max-width: 100%;
-            margin: 0;
-        }
-
-        .merch_layout_container {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            align-items: start;
-            gap: 40px;
-        }
-
-        .text_column {
-            position: sticky;
-            top: 80px;
-            width: 100%;
-            max-width: 360px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .text_column h1 {
-            font-size: 32px;
-            font-weight: 560;
-            line-height: 1.25;
-            color: var(--color-text-primary);
-            margin-bottom: 8px;
-        }
-
-        .text_column p {
-            font-size: 16px;
-            font-weight: 420;
-            line-height: 1.6;
-            color: var(--color-text-secondary);
+            height: 100%;
+            border: none;
+            display: block;
         }
 
         /* Floating Nav Tabs Dock */
@@ -142,70 +94,6 @@
             border-radius: 50%;
             object-fit: cover;
         }
-
-        /* Gallery Grid Layout */
-        .gallery_grid {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-            width: 100%;
-            max-width: 800px;
-        }
-
-        .gallery_item {
-            position: relative;
-            background: #FFFFFF;
-            border-radius: 24px;
-            overflow: hidden;
-            border: 1px solid rgba(0, 0, 0, 0.04);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            width: 100%;
-        }
-
-        .gallery_item:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
-            border-color: rgba(0, 16, 229, 0.08);
-        }
-
-        .gallery_item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-
-        .gallery_item:hover img {
-            transform: scale(1.02);
-        }
-
-        /* Responsive design */
-        @media (max-width: 900px) {
-            .merch_layout_container {
-                flex-direction: column;
-                gap: 60px;
-            }
-            .text_column {
-                position: static;
-                max-width: 100%;
-            }
-            .project_article_wrapper {
-                padding: 60px 40px 100px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .project_article_wrapper {
-                padding: 40px 20px 80px;
-            }
-            .gallery_item {
-                border-radius: 16px;
-            }
-            .text_column h1 {
-                font-size: 28px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -236,23 +124,8 @@
         </div>
     </nav>
 
-    <div class="project_article_wrapper">
-        <div class="merch_layout_container">
-            <!-- Left Text Column -->
-            <div class="text_column">
-                <h1>Павел Воля<br>Официальный сайт</h1>
-                <p>Разработка официального сайта Павла Воли. Проект ориентирован на создание презентабельного, удобного и современного ресурса, отражающего личный бренд артиста.</p>
-                <p>Интерфейс спроектирован для быстрого доступа к информации о выступлениях, гастрольных турах, проектах и контактах для сотрудничества.</p>
-            </div>
-
-            <!-- Right Gallery Grid Column -->
-            <main class="gallery_grid">
-                <div class="gallery_item">
-                    <img src="img/web_site_2.png" alt="Официальный сайт Павла Воли - Главный экран" loading="lazy" />
-                </div>
-            </main>
-        </div>
-    </div>
+    <!-- Live Embedded Website Frame -->
+    <iframe class="site-frame" src="https://pavelvolya.com/" title="Павел Воля. Официальный сайт"></iframe>
 
 </body>
 </html>
