@@ -499,6 +499,14 @@ body {
         margin: 8px 0 0;
     }
 
+    /* Enforce color hover images on mobile since touch has no hover */
+    .rectangle .hover-img {
+        opacity: 1;
+    }
+    .rectangle .default-img {
+        opacity: 0;
+    }
+
     .view-more-grid-button {
         max-width: 100%;
         aspect-ratio: unset;
