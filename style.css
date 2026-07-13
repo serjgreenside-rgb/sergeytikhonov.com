@@ -145,6 +145,45 @@ body {
     transform: scale(1.02) translate3d(0, 0, 0);
 }
 
+/* Tri-Rectangle Card Layout */
+.rectangles_container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: transparent;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.rectangles_container:hover {
+    transform: scale(1.02) translate3d(0, 0, 0);
+}
+
+.rectangle {
+    flex: 1;
+    width: 100%;
+}
+
+.rect-1 {
+    background-color: #FF5E62; /* Vibrant coral-red */
+}
+
+.rect-2 {
+    background-color: #2563EB; /* Solid blue */
+}
+
+.rect-3 {
+    background-color: #10B981; /* Emerald green */
+}
+
 .project_artwork {
     position: absolute;
     inset: 0;
