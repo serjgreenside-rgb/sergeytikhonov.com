@@ -177,11 +177,11 @@ body {
 }
 
 .rect-1 {
-    background-color: #FF5E62; /* Vibrant coral-red fallback */
+    background-color: transparent;
 }
 
 .rect-2 {
-    background-color: #2563EB; /* Solid blue */
+    background-color: transparent;
 }
 
 .rect-3 {
