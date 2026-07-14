@@ -153,6 +153,18 @@
             letter-spacing: -0.02em;
         }
 
+        .nowrap-line {
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 950px) {
+            .nowrap-line {
+                display: inline;
+                white-space: normal;
+            }
+        }
+
         @media (max-width: 950px) {
             .project_article_wrapper {
                 padding: 40px 40px 80px;
@@ -390,8 +402,8 @@
                     <span class="breadcrumb_active">flowwowmerch</span>
                 </nav>
                 <h1><span style="display: inline-block; white-space: nowrap;">Мерч-капсулы</span><br><span style="display: inline-block; white-space: nowrap;">для сотрудников Flowwow</span></h1>
-                <p>Мы с командой разработали принт и цветовую систему для двух мерч-капсул, позволяющую бренду говорить на одном визуальном языке от футболки до упаковки.</p>
-                <p>Собрав мягкие градиенты в абстрактные цветочные формы, мы создали узнаваемую айдентику, которая одинаково работает на одежде, аксессуарах и брендированной упаковке.</p>
+                <p><span class="nowrap-line">Мы с командой разработали принт</span><br><span class="nowrap-line">и цветовую систему для двух мерч-капсул,</span><br><span class="nowrap-line">позволяющую бренду говорить на одном</span><br><span class="nowrap-line">визуальном языке от футболки до упаковки.</span></p>
+                <p><span class="nowrap-line">Собрав мягкие градиенты в абстрактные</span><br><span class="nowrap-line">цветочные формы, мы создали узнаваемую айдентику,</span><br><span class="nowrap-line">которая одинаково работает на одежде, аксессуарах</span><br><span class="nowrap-line">и брендированной упаковке.</span></p>
             </div>
 
             <!-- Right Gallery Grid Column -->
