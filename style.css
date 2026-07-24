@@ -66,6 +66,7 @@ body {
     color: var(--color-text-primary);
     margin-bottom: 28px;
     letter-spacing: -0.02em;
+    white-space: nowrap;
 }
 
 .text-block .intro-greeting .greeting_name {
