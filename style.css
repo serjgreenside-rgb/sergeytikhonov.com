@@ -483,7 +483,8 @@ body {
         font-size: 18px;
     }
 
-    .button svg {
+    .button svg,
+    .btn-telegram-blue-glass svg {
         width: 18px;
         height: 18px;
     }
@@ -700,6 +701,7 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 12px;
     width: 100%; /* Stretch to full width of column block */
     padding: 12px 24px;
     border: none;
@@ -725,6 +727,12 @@ body {
 
 .btn-telegram-blue-glass:active {
     transform: translateY(1px);
+}
+
+.btn-telegram-blue-glass svg {
+    stroke: currentColor;
+    width: 24px;
+    height: 24px;
 }
 
 /* --- Style 2: Frosted Blue Tint (Subtle and clean) --- */
