@@ -120,6 +120,7 @@ body {
     stroke: currentColor;
     width: 24px;
     height: 24px;
+    transform: translateY(-1.5px);
 }
 
 /* Featured Projects on the Right (Scrollable) */
@@ -487,6 +488,7 @@ body {
     .btn-telegram-blue-glass svg {
         width: 18px;
         height: 18px;
+        transform: translateY(-1px);
     }
 
     .featured_projects {
@@ -733,6 +735,7 @@ body {
     stroke: currentColor;
     width: 24px;
     height: 24px;
+    transform: translateY(-1.5px);
 }
 
 /* --- Style 2: Frosted Blue Tint (Subtle and clean) --- */
